@@ -34,11 +34,12 @@
   --gold-soft:#e4cf9d;
   --rose:#a8372b;           /* 価格の強調(GREEN BAYラベルの赤に合わせる) */
   --line:#ecdcbf;
+  --header-h:44px;          /* 固定ヘッダーの高さ */
 }
 
 *{ box-sizing:border-box; }
 
-html{ scroll-behavior:smooth; }
+html{ scroll-behavior:smooth; scroll-padding-top:var(--header-h); }
 
 body{
   margin:0;
@@ -47,6 +48,7 @@ body{
   background:var(--bg-side);
   font-size:16px;
   line-height:1.9;
+  padding-top:var(--header-h);      /* 固定ヘッダー分の余白 */
   -webkit-text-size-adjust:100%;
   -webkit-font-smoothing:antialiased;
 }
@@ -56,7 +58,7 @@ figcaption,
 .gb-note,
 .gb-foot,
 .gb-foot p,
-.gb-header span,
+.gb-header a,
 .gb-price-row,
 .gb-price-now .tax,
 .gb-countdown .cd-label,
@@ -159,15 +161,24 @@ img{ max-width:100%; display:block; }
    ヘッダー
    ========================================================================== */
 .gb-header{
-  text-align:center;
-  padding:16px 24px 14px;
-  border-bottom:1px solid var(--line);
-  background:var(--paper);
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:var(--header-h);
+  padding:0 16px;
+  background:#e04e00;               /* 濃いオレンジ */
+  box-shadow:0 2px 10px -4px rgba(0,0,0,.35);
 }
-.gb-header span{
-  font-size:13px;
-  letter-spacing:.16em;
-  color:var(--ink-soft);
+.gb-header a{
+  font-size:12.5px;
+  font-weight:700;
+  letter-spacing:.06em;
+  color:#fff;                       /* 白文字 */
+  text-decoration:none;
+  white-space:nowrap;
 }
 
 /* ==========================================================================
@@ -835,12 +846,13 @@ body{ padding-bottom:74px; }
 </style>
 </head>
 <body>
-<div class="gb-wrap">
 
-  <!-- ============================================================ ヘッダー -->
-  <header class="gb-header">
-    <span>マヌカハニー専門 グリーンベイ 楽天市場店</span>
-  </header>
+<!-- ============================================================ 固定ヘッダー(濃いオレンジ・店名→店舗トップ) -->
+<header class="gb-header">
+  <a href="https://www.rakuten.co.jp/manuka/">マヌカハニー専門 グリーンベイ 楽天市場店</a>
+</header>
+
+<div class="gb-wrap">
 
   <!-- ============================================================ 1. FV -->
   <section class="gb-hero">
