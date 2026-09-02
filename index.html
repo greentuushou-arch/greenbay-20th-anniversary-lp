@@ -193,10 +193,11 @@ img{ max-width:100%; display:block; }
 .gb-hero-title{
   font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
   font-weight:700;
-  font-size:33px;
+  font-size:26px;
   line-height:1.5;
   margin:0 0 22px;
   color:var(--ink);
+  word-break:keep-all;
 }
 .gb-hero-title b{
   color:var(--honey);
@@ -396,18 +397,29 @@ img{ max-width:100%; display:block; }
   margin:0 0 12px;
 }
 .gb-tl-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.4em;
   font-size:14.5px;
   font-weight:700;
   text-decoration:none;
-  color:var(--honey);
-  border-bottom:1px solid var(--gold-soft);
-  padding-bottom:2px;
+  color:#fff;
+  background:var(--honey);
+  padding:10px 20px;
+  border-radius:4px;
+}
+.gb-tl-link::after{
+  content:"";
+  width:6px; height:6px;
+  border-top:2px solid currentColor;
+  border-right:2px solid currentColor;
+  transform:rotate(45deg);
 }
 .gb-tl-link.is-pending{
   color:var(--ink-soft);
-  opacity:.6;
+  background:transparent;
+  border:1.5px solid var(--gold-soft);
   pointer-events:none;
-  border-bottom-style:dotted;
 }
 
 /* ==========================================================================
@@ -712,8 +724,8 @@ body{ padding-bottom:74px; }
   <section class="gb-hero">
     <div class="gb-inner">
       <p class="gb-hero-year">2006 &nbsp;—&nbsp; 2026</p>
-      <h1 class="gb-hero-title">マヌカハニーひと筋<br><b>20年</b>になりました</h1>
-      <p class="gb-hero-lead">ニュージーランドの現場に毎年通い、本当にお薦めできるものだけを。マヌカハニー専門グリーンベイの楽天出店20周年を、9月ひと月かけてお祝いします。</p>
+      <h1 class="gb-hero-title">『マヌカハニーひと筋』<br>楽天出店<b>20年</b>になりました</h1>
+      <p class="gb-hero-lead">ニュージーランドの現場に毎年通い、本当にお薦めできるものだけを。マヌカハニー専門グリーンベイの楽天出店20周年を迎えることができた感謝を込めて企画をご用意しました。ぜひご覧ください。</p>
 
       <!-- ▼差し替え: 専用FVビジュアルができたら下記 figure を画像1枚に置換 -->
       <div class="gb-hero-visual">
@@ -722,7 +734,8 @@ body{ padding-bottom:74px; }
 
       <div class="gb-hero-btns">
         <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">20周年福袋セットを見る</a>
-        <a href="#schedule" class="gb-btn gb-btn--line">9月のクーポン日程</a>
+        <!-- ▼スーパーSALE終了後、日程セクションを削除する場合はこのボタンも削除 -->
+        <a href="#schedule" class="gb-btn gb-btn--line">特別クーポン日程を見る</a>
       </div>
     </div>
   </section>
@@ -754,7 +767,7 @@ body{ padding-bottom:74px; }
 
           <div class="gb-fuku-btns">
             <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">福袋セットの商品ページへ</a>
-            <a href="#" class="gb-btn gb-btn--line" data-coupon="fukubukuro">クーポンを獲得する</a>
+            <a href="#" class="gb-btn gb-btn--line" data-coupon="fukubukuro">クーポンはこちら</a>
           </div>
           <p class="gb-note">※クーポンの獲得URLは、配布開始後にこのページへ反映します。利用条件・発行数は楽天市場のクーポンページをご確認ください。</p>
         </div>
@@ -762,12 +775,20 @@ body{ padding-bottom:74px; }
     </div>
   </section>
 
-  <!-- ============================================================ 3. クーポン日程 -->
+  <!-- ============================================================ 3. 特別クーポン日程 -->
+  <!-- ================================================================
+       ▼▼▼ 楽天スーパーSALE 期間中のみ表示するセクション ▼▼▼
+       スーパーSALE終了後は、この <section class="gb-schedule"> ～ </section>
+       を丸ごと削除してください。あわせて下記も削除／変更：
+        ・FVの「特別クーポン日程を見る」ボタン（href="#schedule"）
+        ・最後のCTAの「特別クーポン日程を見る」ボタン（href="#schedule"）
+        ・スマホ追従バーの「クーポン日程」リンク（href="#schedule"）
+       ================================================================ -->
   <section class="gb-schedule" id="schedule">
     <div class="gb-inner">
-      <p class="gb-kicker is-ja">20周年記念祭の歩き方</p>
-      <h2 class="gb-h2">9月のクーポン日程</h2>
-      <p class="gb-lead">9月は、期間ごとに使えるクーポンが切り替わります。お買い物のタイミングの目安にどうぞ。</p>
+      <p class="gb-kicker is-ja">楽天スーパーSALE × 出店20周年企画</p>
+      <h2 class="gb-h2">特別クーポン日程</h2>
+      <p class="gb-lead">スーパーSALE期間中は、時間帯ごとに使えるクーポンが切り替わります。お買い物のタイミングの目安にどうぞ。</p>
 
       <div class="gb-countdown" id="countdown" hidden>
         <p class="cd-label" id="cd-label">次のクーポン開放まで</p>
@@ -780,36 +801,37 @@ body{ padding-bottom:74px; }
           <p class="gb-tl-date">9月 会期中<span class="time">ずっと使えます</span></p>
           <p class="gb-tl-name">開店20周年 福袋セット 50％OFFクーポン</p>
           <p class="gb-tl-desc">UMF10＋・UMF15＋の食べ比べセットが対象。9月の会期を通してご利用いただけます。</p>
-          <a href="#" class="gb-tl-link" data-coupon="fukubukuro">クーポンを獲得する</a>
+          <a href="#" class="gb-tl-link" data-coupon="fukubukuro">クーポンはこちら</a>
         </li>
         <li>
           <p class="gb-tl-date">9/4<span class="time">20:00 – 23:59 ／ 4時間限定</span></p>
           <p class="gb-tl-name">4時間限定 スペシャルクーポン</p>
           <p class="gb-tl-desc">UMF10＋・UMF20＋が1個から50％OFF。通常より割引の大きい、この4時間だけの特別クーポンです。</p>
-          <a href="#" class="gb-tl-link" data-coupon="flash4h">クーポンを獲得する</a>
+          <a href="#" class="gb-tl-link" data-coupon="flash4h">クーポンはこちら</a>
         </li>
         <li>
           <p class="gb-tl-date">9/5<span class="time">00:00 – 23:59 ／ 24時間限定</span></p>
           <p class="gb-tl-name">24時間限定 タイムセールクーポン</p>
           <p class="gb-tl-desc">いつものタイムセールクーポンを、この1日限定で。</p>
-          <a href="#" class="gb-tl-link" data-coupon="time24h">クーポンを獲得する</a>
+          <a href="#" class="gb-tl-link" data-coupon="time24h">クーポンはこちら</a>
         </li>
         <li>
           <p class="gb-tl-date">9/6 – 9/11<span class="time">9/6 0:00 – 9/11 1:59</span></p>
           <p class="gb-tl-name">通常クーポン</p>
-          <p class="gb-tl-desc">記念祭のあいだ使える通常クーポン。ゆっくり選びたい方に。</p>
-          <a href="#" class="gb-tl-link" data-coupon="regular">クーポンを獲得する</a>
+          <p class="gb-tl-desc">スーパーSALE期間中いつでも使える通常クーポン。ゆっくり選びたい方に。</p>
+          <a href="#" class="gb-tl-link" data-coupon="regular">クーポンはこちら</a>
         </li>
         <li>
           <p class="gb-tl-date">9/9 – 9/11<span class="time">9/9 20:00 – 9/11 1:59 ／ 30時間限定</span></p>
           <p class="gb-tl-name">30時間限定 タイムセールクーポン</p>
-          <p class="gb-tl-desc">記念祭のラストスパート。30時間限定のタイムセールクーポンです。</p>
-          <a href="#" class="gb-tl-link" data-coupon="time30h">クーポンを獲得する</a>
+          <p class="gb-tl-desc">スーパーSALEのラストスパート。30時間限定のタイムセールクーポンです。</p>
+          <a href="#" class="gb-tl-link" data-coupon="time30h">クーポンはこちら</a>
         </li>
       </ul>
       <p class="gb-note">※各クーポンの獲得URL・利用条件・発行数は、配布開始後に楽天市場のクーポンページでご確認ください。日程は変更となる場合があります。</p>
     </div>
   </section>
+  <!-- ▲▲▲ 楽天スーパーSALE 期間中のみ表示するセクション ここまで ▲▲▲ -->
 
   <!-- ============================================================ 4. ここまでの歩み -->
   <section class="gb-story">
@@ -975,7 +997,8 @@ body{ padding-bottom:74px; }
       </p>
       <div class="gb-final-btns">
         <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">20周年福袋セットを見る</a>
-        <a href="#schedule" class="gb-btn gb-btn--ghost">9月のクーポン日程を見る</a>
+        <!-- ▼スーパーSALE終了後、日程セクションを削除する場合はこのボタンも削除 -->
+        <a href="#schedule" class="gb-btn gb-btn--ghost">特別クーポン日程を見る</a>
       </div>
     </div>
   </section>
@@ -995,6 +1018,7 @@ body{ padding-bottom:74px; }
 <!-- スマホ追従CTA(PCでは非表示) -->
 <div class="gb-sticky">
   <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">福袋を見る</a>
+  <!-- ▼スーパーSALE終了後、日程セクションを削除する場合はこのリンクも削除 -->
   <a href="#schedule" class="gb-btn gb-btn--line">クーポン日程</a>
 </div>
 
