@@ -182,10 +182,9 @@ img{ max-width:100%; display:block; }
 }
 .gb-hero .gb-inner{ text-align:center; padding-top:30px; }
 
-/* 追加FV看板(演出なし)：全面。左右・上の余白なし、角丸なし */
+/* FV看板(演出なし)：全面。左右・上の余白なし、角丸なし */
 .gb-hero-banner{ margin:0; }
 .gb-hero-banner img{ width:100%; height:auto; display:block; }
-.gb-hero-banner .gb-hero-banner-pc{ display:none; }
 
 .gb-hero-year{
   font-family:"Josefin Sans",sans-serif;
@@ -716,8 +715,6 @@ body{ padding-bottom:74px; }
 
   .gb-hero{ padding:0 0 68px; }
   .gb-hero .gb-inner{ padding-top:44px; }
-  .gb-hero-banner .gb-hero-banner-sp{ display:none; }
-  .gb-hero-banner .gb-hero-banner-pc{ display:block; }
   .gb-hero-year{ font-size:16px; }
   .gb-hero-title{ font-size:44px; }
   .gb-hero-lead{ font-size:16.5px; text-align:center; }
@@ -786,15 +783,12 @@ body{ padding-bottom:74px; }
   <!-- ============================================================ 1. FV -->
   <section class="gb-hero">
 
-    <!-- ▼追加FV看板：全面(左右・上の余白なし)。SP用(縦長)とPC用(横長)を768pxで切替。
-         ここにお客様の看板画像を差し替え ▼
-         images/hero/fv-banner-sp.jpg … スマホ表示(767px以下)
-         images/hero/fv-banner-pc.jpg … PC表示(768px以上)
+    <!-- ▼FV看板：全面(左右・上の余白なし)。差し替えは images/hero/fv-banner.jpg を上書き。
          ※この看板には演出(光)は入れません。下の商品写真ブロックの光はそのまま残しています。
-         ※SP1枚だけで運用する場合は fv-banner-pc.jpg も同じ画像に差し替えてください。 -->
+         ※PC用に別デザイン(横長)を使う場合は、下に .gb-hero-banner-pc の <img> を足して
+           CSSで768px以上の出し分けをしてください。 -->
     <div class="gb-hero-banner">
-      <img src="images/hero/fv-banner-sp.jpg" alt="マヌカハニー専門グリーンベイ 楽天出店20周年記念祭" class="gb-hero-banner-sp">
-      <img src="images/hero/fv-banner-pc.jpg" alt="マヌカハニー専門グリーンベイ 楽天出店20周年記念祭" class="gb-hero-banner-pc">
+      <img src="images/hero/fv-banner.jpg" alt="Rakuten スーパーSALE ＆ 楽天出店20周年記念祭　9/4(金)20:00〜9/11(金)1:59　マヌカハニー専門グリーンベイ">
     </div>
 
     <div class="gb-inner">
