@@ -425,30 +425,55 @@ img{ max-width:100%; display:block; }
 .gb-ticket::after{ bottom:-8px; }
 
 .gb-ticket-body{
-  padding:17px 20px 18px;
+  padding:16px 20px 17px;
   border-left:2px dashed var(--gold-soft);
   display:flex;
   flex-direction:column;
-  gap:5px;
+  gap:4px;
 }
 .gb-ticket-mark{
   font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
-  font-size:11.5px;
+  font-size:11px;
   font-weight:600;
   letter-spacing:.34em;
   text-transform:uppercase;
   color:var(--honey);
 }
+/* 日付・時間を主役に(大きく) */
+.gb-ticket-when{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  margin:3px 0 5px;
+}
+.gb-ticket-when .wdate{
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-weight:600;
+  font-size:27px;
+  line-height:1.1;
+  letter-spacing:.005em;
+  color:var(--amber-deep);
+  word-break:keep-all;
+}
+.gb-ticket-when .wtime{
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-weight:600;
+  font-size:15.5px;
+  letter-spacing:.02em;
+  color:var(--honey);
+  word-break:keep-all;
+}
 .gb-ticket-name{
   font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
-  font-size:17px;
+  font-size:15px;
   font-weight:700;
   line-height:1.5;
+  color:var(--ink);
 }
 .gb-ticket-meta{
   font-size:12.5px;
   color:var(--ink-soft);
-  line-height:1.65;
+  line-height:1.6;
   word-break:keep-all;
   overflow-wrap:anywhere;
 }
@@ -736,7 +761,9 @@ body{ padding-bottom:74px; }
   .gb-ticket::before, .gb-ticket::after{ left:125px; }
   .gb-ticket-stub .big{ font-size:34px; }
   .gb-ticket-stub.is-ja .big{ font-size:21px; }
-  .gb-ticket-name{ font-size:18px; }
+  .gb-ticket-when .wdate{ font-size:33px; }
+  .gb-ticket-when .wtime{ font-size:17px; }
+  .gb-ticket-name{ font-size:16px; }
   .gb-ticket-body{ padding:20px 26px; }
 
   /* 歩み:章を左右交互に */
@@ -902,8 +929,11 @@ body{ padding-bottom:74px; }
           </span>
           <span class="gb-ticket-body">
             <span class="gb-ticket-mark">Coupon</span>
-            <span class="gb-ticket-name">開店20周年 福袋セット</span>
-            <span class="gb-ticket-meta">9月の会期中ずっと<br>食べ比べセットが対象</span>
+            <span class="gb-ticket-when">
+              <span class="wdate">9月 会期中</span>
+              <span class="wtime">ずっと使えます</span>
+            </span>
+            <span class="gb-ticket-name">開店20周年 福袋セット／食べ比べセットが対象</span>
             <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
           </span>
         </a>
@@ -914,8 +944,11 @@ body{ padding-bottom:74px; }
           </span>
           <span class="gb-ticket-body">
             <span class="gb-ticket-mark">Start Coupon</span>
-            <span class="gb-ticket-name">スペシャルクーポン</span>
-            <span class="gb-ticket-meta">9/4 20:00 – 23:59<br>種類いろいろ・一覧ページへ</span>
+            <span class="gb-ticket-when">
+              <span class="wdate">9/4</span>
+              <span class="wtime">20:00 – 23:59</span>
+            </span>
+            <span class="gb-ticket-name">スペシャルクーポン／種類いろいろ・一覧ページへ</span>
             <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
           </span>
         </a>
@@ -926,8 +959,11 @@ body{ padding-bottom:74px; }
           </span>
           <span class="gb-ticket-body">
             <span class="gb-ticket-mark">Coupon</span>
-            <span class="gb-ticket-name">タイムセールクーポン</span>
-            <span class="gb-ticket-meta">9/5 0:00 – 23:59<br>5の付く日のタイムセール</span>
+            <span class="gb-ticket-when">
+              <span class="wdate">9/5</span>
+              <span class="wtime">0:00 – 23:59</span>
+            </span>
+            <span class="gb-ticket-name">タイムセールクーポン／5の付く日</span>
             <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
           </span>
         </a>
@@ -939,8 +975,11 @@ body{ padding-bottom:74px; }
           </span>
           <span class="gb-ticket-body">
             <span class="gb-ticket-mark">Coupon</span>
-            <span class="gb-ticket-name">スーパーSALEクーポン</span>
-            <span class="gb-ticket-meta">9/6 0:00 – 9/11 1:59<br>SALE期間中いつでも</span>
+            <span class="gb-ticket-when">
+              <span class="wdate">9/6 – 9/11</span>
+              <span class="wtime">9/6 0:00 → 9/11 1:59</span>
+            </span>
+            <span class="gb-ticket-name">スーパーSALEクーポン／期間中いつでも</span>
             <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
           </span>
         </a>
@@ -951,8 +990,11 @@ body{ padding-bottom:74px; }
           </span>
           <span class="gb-ticket-body">
             <span class="gb-ticket-mark">Coupon</span>
-            <span class="gb-ticket-name">ラストスパートクーポン</span>
-            <span class="gb-ticket-meta">9/9 20:00 – 9/11 1:59<br>SALE最後の30時間</span>
+            <span class="gb-ticket-when">
+              <span class="wdate">9/9 – 9/11</span>
+              <span class="wtime">9/9 20:00 → 9/11 1:59</span>
+            </span>
+            <span class="gb-ticket-name">ラストスパートクーポン／SALE最後の30時間</span>
             <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
           </span>
         </a>
