@@ -326,6 +326,41 @@ img{ max-width:100%; display:block; }
   padding:56px 0;
 }
 
+/* ---- 特別クーポン日程 見出し(超大きく・中央・イベント感) ---- */
+.gb-sched-head{ text-align:center; margin:0 0 30px; }
+.gb-sched-over{
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-size:12.5px;
+  font-weight:600;
+  letter-spacing:.22em;
+  color:var(--amber-deep);
+  margin:0 0 12px;
+}
+.gb-sched-title{
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
+  font-weight:900;
+  font-size:clamp(36px, 10vw, 62px);
+  line-height:1.08;
+  letter-spacing:.02em;
+  color:var(--amber-deep);
+  margin:0;
+}
+.gb-sched-title::after{
+  content:"";
+  display:block;
+  width:60px; height:5px;
+  background:var(--honey);
+  border-radius:3px;
+  margin:16px auto 0;
+}
+.gb-sched-lead{
+  font-size:14px;
+  color:var(--ink-soft);
+  line-height:1.8;
+  margin:16px auto 0;
+  max-width:26em;
+}
+
 /* ---- カウントダウン(パタパタ時計 / ドリームクラフト意匠を踏襲) ---- */
 #mainCountdown{ display:flex; flex-direction:column; align-items:center; margin:0 0 34px; }
 .gb-cd-bubble{
@@ -827,12 +862,6 @@ body{ padding-bottom:74px; }
       <div class="gb-hero-visual">
         <img src="images/hero/product-hero.jpg" alt="GREEN BAY PREMIUM マヌカハニーと、はちみつをすくうディッパー">
       </div>
-
-      <div class="gb-hero-btns">
-        <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">20周年福袋セットを見る</a>
-        <!-- ▼スーパーSALE終了後、日程セクションを削除する場合はこのボタンも削除 -->
-        <a href="#schedule" class="gb-btn gb-btn--line">特別クーポン日程を見る</a>
-      </div>
     </div>
   </section>
 
@@ -882,9 +911,11 @@ body{ padding-bottom:74px; }
        ================================================================ -->
   <section class="gb-schedule" id="schedule">
     <div class="gb-inner">
-      <p class="gb-kicker is-ja">楽天スーパーSALE × 出店20周年企画</p>
-      <h2 class="gb-h2">特別クーポン日程</h2>
-      <p class="gb-lead">スーパーSALE期間中は、時間帯ごとに使えるクーポンが切り替わります。お買い物のタイミングの目安にどうぞ。</p>
+      <div class="gb-sched-head">
+        <p class="gb-sched-over">楽天スーパーSALE × 出店20周年企画</p>
+        <h2 class="gb-sched-title">特別クーポン日程</h2>
+        <p class="gb-sched-lead">スーパーSALE期間中は、時間帯ごとに使えるクーポンが切り替わります。</p>
+      </div>
 
       <div id="mainCountdown">
         <div class="gb-cd-bubble" id="mainState">楽天スーパーSALE終了まであと</div>
