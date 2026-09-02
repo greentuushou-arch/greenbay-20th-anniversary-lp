@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マヌカハニー専門グリーンベイ｜楽天出店20周年記念祭</title>
+<meta name="description" content="ニュージーランドの現場に毎年通い、本当にお薦めできるものだけを。マヌカハニー専門グリーンベイの楽天出店20周年を、9月ひと月かけてお祝いします。20周年福袋セットと期間限定クーポンをご用意しました。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Kaisei+Opti:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   マヌカハニー専門グリーンベイ｜楽天出店20周年記念祭 特集ページ
+   - CSS / JS はこの1ファイルに完結。画像は images/ 配下(相対パス)。
+   - スマホ幅を基準に作成し、768px以上を1ブロックでPC調整。
+   - 差し替え箇所は  <!-- ▼差し替え -->  で明記。
+   - クーポン獲得URLは data-coupon 属性の要素へ、ページ下部の COUPONS で一括設定。
+     URL未定のあいだは「準備中」表示になります。
+   ========================================================================== */
+
+:root{
+  --bg-side:#f2e4cf;        /* 本体の外側 */
+  --paper:#fffdf8;          /* 本体カラム */
+  --paper-warm:#faf1e0;     /* うっすら色のセクション */
+  --honey-pale:#fbe7c4;     /* 淡いはちみつ */
+  --honey:#e7971b;          /* 主役のはちみつオレンジ */
+  --honey-mid:#f2b53a;      /* 明るいはちみつ */
+  --amber-deep:#5f3610;     /* 深い琥珀(暗色セクション) */
+  --ink:#3c2a17;            /* 本文 */
+  --ink-soft:#6f5943;       /* 補助テキスト */
+  --gold:#c39a48;           /* 細い罫線・下線 */
+  --gold-soft:#e4cf9d;
+  --rose:#a8372b;           /* 価格の強調(GREEN BAYラベルの赤に合わせる) */
+  --line:#ecdcbf;
+}
+
+*{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",-apple-system,Meiryo,sans-serif;
+  color:var(--ink);
+  background:var(--bg-side);
+  line-height:1.9;
+  -webkit-text-size-adjust:100%;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{ max-width:100%; display:block; }
+
+.gb-wrap{
+  max-width:760px;
+  margin:0 auto;
+  background:var(--paper);
+  overflow:hidden;
+}
+
+.gb-inner{ padding:0 24px; }
+
+/* ---------- 共通:見出し ---------- */
+.gb-kicker{
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--honey);
+  margin:0 0 14px;
+}
+.gb-kicker.is-ja{
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  letter-spacing:.28em;
+  font-weight:700;
+}
+
+.gb-h2{
+  font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
+  font-weight:700;
+  font-size:29px;
+  line-height:1.55;
+  margin:0 0 20px;
+  color:var(--ink);
+}
+.gb-lead{
+  font-size:15.5px;
+  color:var(--ink-soft);
+  margin:0 0 30px;
+}
+
+/* ---------- 共通:ボタン ---------- */
+.gb-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5em;
+  text-decoration:none;
+  font-weight:700;
+  font-size:15.5px;
+  line-height:1.4;
+  padding:17px 26px;
+  border-radius:4px;
+  transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+.gb-btn::after{
+  content:"";
+  width:7px; height:7px;
+  border-top:2px solid currentColor;
+  border-right:2px solid currentColor;
+  transform:rotate(45deg);
+  margin-left:.2em;
+  flex:none;
+}
+.gb-btn--solid{
+  background:var(--honey);
+  color:#fff;
+  box-shadow:0 10px 22px -10px rgba(231,151,27,.9);
+}
+.gb-btn--solid:active{ transform:translateY(1px); }
+.gb-btn--line{
+  background:transparent;
+  color:var(--amber-deep);
+  border:1.5px solid var(--gold);
+}
+.gb-btn--ghost{
+  background:transparent;
+  color:#fff;
+  border:1.5px solid rgba(255,255,255,.55);
+}
+.gb-btn.is-pending{
+  opacity:.5;
+  pointer-events:none;
+}
+.gb-btn.is-pending::after{ opacity:.4; }
+
+/* ==========================================================================
+   ヘッダー
+   ========================================================================== */
+.gb-header{
+  text-align:center;
+  padding:16px 24px 14px;
+  border-bottom:1px solid var(--line);
+  background:var(--paper);
+}
+.gb-header span{
+  font-size:11.5px;
+  letter-spacing:.24em;
+  color:var(--ink-soft);
+}
+
+/* ==========================================================================
+   1. ファーストビュー
+   ▼差し替え: 専用のFVメインビジュアルが用意できたら
+   .gb-hero-visual の中身(写真＋タイポ)を画像1枚に置き換え可能。
+   ========================================================================== */
+.gb-hero{
+  background:
+    radial-gradient(120% 80% at 50% 0%, #fff6e6 0%, var(--honey-pale) 58%, #f3c874 100%);
+  padding:40px 0 46px;
+}
+.gb-hero .gb-inner{ text-align:center; }
+
+.gb-hero-year{
+  font-family:"Josefin Sans",sans-serif;
+  font-weight:300;
+  font-size:15px;
+  letter-spacing:.4em;
+  color:var(--amber-deep);
+  margin:0 0 18px;
+}
+.gb-hero-title{
+  font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
+  font-weight:700;
+  font-size:33px;
+  line-height:1.5;
+  margin:0 0 22px;
+  color:var(--ink);
+}
+.gb-hero-title b{
+  color:var(--honey);
+  font-weight:700;
+}
+.gb-hero-lead{
+  font-size:14.5px;
+  color:var(--ink-soft);
+  margin:0 auto 28px;
+  max-width:30em;
+  text-align:left;
+}
+
+.gb-hero-visual{
+  position:relative;
+  margin:0 0 30px;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 24px 44px -22px rgba(95,54,16,.55);
+}
+.gb-hero-visual img{ width:100%; height:auto; }
+/* ゆっくり通過する光。JSでランダム間隔に .is-shine を付け外し */
+.gb-hero-visual::after{
+  content:"";
+  position:absolute;
+  top:0; left:-60%;
+  width:38%; height:100%;
+  background:linear-gradient(75deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 50%,rgba(255,255,255,0) 100%);
+  transform:skewX(-18deg);
+  pointer-events:none;
+}
+.gb-hero-visual.is-shine::after{ animation:gb-shine 1.7s ease-in-out; }
+@keyframes gb-shine{ from{ left:-60%; } to{ left:130%; } }
+
+.gb-hero-btns{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.gb-hero-btns .gb-btn{ width:100%; }
+
+/* ==========================================================================
+   2. 9月の目玉 ─ 20周年福袋セット
+   ▼差し替え: images/fukubukuro/banner.jpg
+   ========================================================================== */
+.gb-fukubukuro{
+  background:var(--honey-pale);
+  padding:56px 0;
+}
+.gb-fukubukuro .gb-kicker{ color:var(--amber-deep); }
+
+.gb-fuku-grid{ display:block; }
+.gb-fuku-banner{
+  margin:0 0 26px;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 22px 40px -20px rgba(95,54,16,.5);
+}
+.gb-fuku-banner img{ width:100%; height:auto; }
+
+.gb-fuku-body p{ margin:0 0 1.1em; font-size:15px; }
+
+.gb-price{
+  margin:22px 0 24px;
+  padding:20px 22px;
+  background:#fff;
+  border:1px solid var(--gold-soft);
+  border-radius:8px;
+}
+.gb-price-row{
+  font-size:13.5px;
+  color:var(--ink-soft);
+}
+.gb-price-row s{ text-decoration-thickness:1px; }
+.gb-price-now{
+  display:flex;
+  align-items:baseline;
+  gap:.4em;
+  margin-top:6px;
+  color:var(--rose);
+  font-weight:700;
+}
+.gb-price-now .num{
+  font-family:"Josefin Sans",sans-serif;
+  font-size:40px;
+  line-height:1;
+  letter-spacing:.01em;
+}
+.gb-price-now .yen{ font-size:17px; }
+.gb-price-now .tax{
+  font-size:11px;
+  color:var(--ink-soft);
+  font-weight:500;
+}
+.gb-price-badge{
+  display:inline-block;
+  margin-top:10px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  color:#fff;
+  background:var(--honey);
+  padding:5px 12px;
+  border-radius:3px;
+}
+
+.gb-fuku-btns{ display:flex; flex-direction:column; gap:12px; }
+.gb-fuku-btns .gb-btn{ width:100%; }
+.gb-note{
+  font-size:12px;
+  color:var(--ink-soft);
+  margin:16px 0 0;
+}
+
+/* ==========================================================================
+   3. 9月のクーポン日程
+   ========================================================================== */
+.gb-schedule{
+  background:var(--paper);
+  padding:56px 0;
+}
+
+.gb-countdown{
+  margin:0 0 34px;
+  padding:18px 20px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--paper-warm);
+  text-align:center;
+}
+.gb-countdown .cd-label{
+  font-size:12px;
+  letter-spacing:.16em;
+  color:var(--ink-soft);
+  margin:0 0 8px;
+}
+.gb-countdown .cd-clock{
+  font-family:"Josefin Sans",sans-serif;
+  font-size:27px;
+  font-weight:400;
+  letter-spacing:.06em;
+  color:var(--amber-deep);
+}
+.gb-countdown .cd-target{
+  display:block;
+  margin-top:6px;
+  font-size:12.5px;
+  letter-spacing:.04em;
+  color:var(--honey);
+  font-weight:700;
+}
+
+.gb-timeline{ list-style:none; margin:0; padding:0; }
+.gb-timeline > li{
+  position:relative;
+  padding:0 0 30px 26px;
+  border-left:2px solid var(--gold-soft);
+}
+.gb-timeline > li:last-child{ padding-bottom:0; }
+.gb-timeline > li::before{
+  content:"";
+  position:absolute;
+  left:-8px; top:3px;
+  width:14px; height:14px;
+  border-radius:50%;
+  background:var(--honey);
+  border:3px solid var(--paper);
+}
+.gb-timeline > li.is-through::before{ background:var(--amber-deep); }
+
+.gb-tl-date{
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.02em;
+  color:var(--amber-deep);
+  margin:0 0 4px;
+}
+.gb-tl-date .time{
+  font-size:12.5px;
+  color:var(--ink-soft);
+  font-weight:400;
+  margin-left:.5em;
+  letter-spacing:0;
+}
+.gb-tl-name{
+  font-weight:700;
+  font-size:16.5px;
+  margin:0 0 4px;
+  color:var(--ink);
+}
+.gb-tl-desc{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  margin:0 0 12px;
+}
+.gb-tl-link{
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  color:var(--honey);
+  border-bottom:1px solid var(--gold-soft);
+  padding-bottom:2px;
+}
+.gb-tl-link.is-pending{
+  color:var(--ink-soft);
+  opacity:.6;
+  pointer-events:none;
+  border-bottom-style:dotted;
+}
+
+/* ==========================================================================
+   4. ここまでの歩み(タイムスリップ)
+   ========================================================================== */
+.gb-story{
+  background:var(--paper-warm);
+  padding:58px 0 60px;
+  position:relative;
+}
+.gb-story .gb-inner{ position:relative; z-index:1; }
+.gb-story .gb-h2{ text-align:center; }
+.gb-story-intro{
+  text-align:center;
+  font-size:14.5px;
+  color:var(--ink-soft);
+  margin:0 auto 44px;
+  max-width:28em;
+}
+
+.gb-chapter{
+  position:relative;
+  padding-left:22px;
+  border-left:2px solid var(--gold-soft);
+  padding-bottom:42px;
+}
+.gb-chapter:last-child{ padding-bottom:0; }
+.gb-chapter::before{
+  content:"";
+  position:absolute;
+  left:-9px; top:2px;
+  width:16px; height:16px;
+  border-radius:50%;
+  background:var(--honey-mid);
+  border:3px solid var(--paper-warm);
+}
+
+.gb-chapter-year{
+  font-family:"Josefin Sans",sans-serif;
+  font-weight:300;
+  font-size:38px;
+  line-height:1;
+  color:var(--honey);
+  margin:0 0 2px;
+}
+.gb-chapter-year.is-word{
+  font-family:"Kaisei Opti",serif;
+  font-weight:500;
+  font-size:22px;
+  color:var(--amber-deep);
+}
+.gb-chapter-tag{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.18em;
+  color:var(--amber-deep);
+  margin:0 0 12px;
+}
+.gb-chapter-text{
+  font-size:14.5px;
+  color:var(--ink);
+  margin:0 0 16px;
+}
+.gb-chapter-photos{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.gb-chapter-photos figure{
+  margin:0;
+  flex:1 1 100%;
+}
+.gb-chapter-photos.is-pair figure{ flex:1 1 calc(50% - 5px); }
+.gb-chapter-photos img{
+  width:100%;
+  height:auto;
+  border-radius:6px;
+  border:1px solid var(--gold-soft);
+  box-shadow:0 14px 26px -18px rgba(95,54,16,.55);
+}
+.gb-chapter-photos figcaption{
+  font-size:11px;
+  color:var(--ink-soft);
+  margin-top:6px;
+}
+
+.gb-pullquote{
+  font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
+  font-size:19px;
+  line-height:1.8;
+  color:var(--amber-deep);
+  margin:4px 0 14px;
+}
+
+.gb-story-close{
+  text-align:center;
+  font-family:"Kaisei Opti",serif;
+  font-size:17px;
+  color:var(--ink);
+  margin:46px auto 0;
+  max-width:26em;
+}
+
+/* ==========================================================================
+   5. リニューアルしたマヌカハニー
+   ▼差し替え: images/renewal/drizzle.jpg
+   ========================================================================== */
+.gb-renewal{
+  background:var(--honey-pale);
+  padding:56px 0;
+}
+.gb-renewal-photo{
+  border-radius:8px;
+  overflow:hidden;
+  margin:0 0 26px;
+  box-shadow:0 22px 40px -22px rgba(95,54,16,.5);
+}
+.gb-renewal-photo img{ width:100%; height:auto; }
+.gb-renewal-body p{ margin:0 0 1.1em; font-size:15px; }
+.gb-words{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:20px 0 26px;
+}
+.gb-words span{
+  font-weight:700;
+  font-size:13.5px;
+  color:var(--amber-deep);
+  background:#fff;
+  border:1px solid var(--gold-soft);
+  border-radius:4px;
+  padding:8px 14px;
+}
+
+/* ==========================================================================
+   6. 店長メッセージ
+   ▼差し替え: images/story/apiary.jpg
+   ========================================================================== */
+.gb-message{
+  background:var(--paper);
+  padding:56px 0;
+}
+.gb-message-photo{
+  margin:0 0 24px;
+}
+.gb-message-photo img{
+  width:100%;
+  height:auto;
+  border-radius:6px;
+  border:1px solid var(--gold-soft);
+}
+.gb-message-photo figcaption{
+  font-size:11.5px;
+  color:var(--ink-soft);
+  margin-top:8px;
+}
+.gb-message-body p{ margin:0 0 1.2em; font-size:14.5px; }
+.gb-sign{
+  margin-top:26px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  font-size:14px;
+}
+.gb-sign b{
+  display:block;
+  font-family:"Kaisei Opti",serif;
+  font-size:17px;
+  font-weight:700;
+  margin-top:4px;
+  letter-spacing:.04em;
+}
+
+/* ==========================================================================
+   7. 最後のCTA
+   ========================================================================== */
+.gb-final{
+  background:linear-gradient(165deg,var(--amber-deep),#3f2409);
+  color:#fff;
+  text-align:center;
+  padding:52px 0 58px;
+}
+.gb-final .gb-inner{ max-width:none; }
+.gb-final-title{
+  font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
+  font-weight:500;
+  font-size:23px;
+  line-height:1.7;
+  margin:0 0 30px;
+}
+.gb-final-title b{ color:var(--honey-mid); font-weight:700; }
+.gb-final-btns{ display:flex; flex-direction:column; gap:12px; }
+.gb-final-btns .gb-btn--solid{ box-shadow:none; }
+
+/* ==========================================================================
+   注意事項 / フッター
+   ========================================================================== */
+.gb-foot{
+  background:var(--paper);
+  padding:30px 24px 44px;
+  font-size:11.5px;
+  color:var(--ink-soft);
+  line-height:1.8;
+}
+.gb-foot p{ margin:0 0 .8em; }
+.gb-foot a{ color:var(--amber-deep); }
+
+/* ---------- スマホ追従CTA(PCでは非表示) ---------- */
+.gb-sticky{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  z-index:60;
+  display:flex;
+  gap:8px;
+  padding:9px 12px;
+  background:rgba(255,253,248,.96);
+  backdrop-filter:blur(4px);
+  border-top:1px solid var(--gold-soft);
+  box-shadow:0 -4px 14px -6px rgba(95,54,16,.4);
+}
+.gb-sticky a{
+  flex:1;
+  font-size:13px;
+  padding:13px 8px;
+  border-radius:4px;
+}
+.gb-wrap{ padding-bottom:0; }
+body{ padding-bottom:68px; }
+
+/* ==========================================================================
+   PCレイアウト (768px以上)
+   ========================================================================== */
+@media screen and (min-width:768px){
+  body{ padding-bottom:0; }
+  .gb-sticky{ display:none; }
+
+  .gb-inner{ padding:0 48px; }
+  .gb-h2{ font-size:34px; }
+
+  .gb-hero{ padding:64px 0 68px; }
+  .gb-hero-year{ font-size:16px; }
+  .gb-hero-title{ font-size:44px; }
+  .gb-hero-lead{ font-size:15.5px; text-align:center; }
+  .gb-hero-btns{ flex-direction:row; justify-content:center; }
+  .gb-hero-btns .gb-btn{ width:auto; min-width:230px; }
+
+  /* 福袋:バナーとテキストを左右に */
+  .gb-fuku-grid{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  .gb-fuku-banner{ margin:0; }
+  .gb-fuku-btns{ flex-direction:row; }
+  .gb-fuku-btns .gb-btn{ width:auto; flex:1; }
+
+  .gb-timeline > li{ padding-left:32px; }
+
+  /* 歩み:章を左右交互に */
+  .gb-story .gb-inner{ max-width:620px; margin:0 auto; }
+  .gb-chapter{ padding-left:28px; }
+  .gb-chapter-year{ font-size:46px; }
+  .gb-chapter-text{ font-size:15px; }
+
+  .gb-renewal-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .gb-renewal-photo{ margin:0; }
+
+  .gb-message .gb-inner{ max-width:640px; margin:0 auto; }
+  .gb-message-inner{
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:32px;
+    align-items:start;
+  }
+  .gb-message-photo{ margin:0; }
+
+  .gb-final-title{ font-size:28px; }
+  .gb-final-btns{ flex-direction:row; justify-content:center; }
+  .gb-final-btns .gb-btn{ min-width:230px; }
+}
+</style>
+</head>
+<body>
+<div class="gb-wrap">
+
+  <!-- ============================================================ ヘッダー -->
+  <header class="gb-header">
+    <span>マヌカハニー専門 グリーンベイ 楽天市場店</span>
+  </header>
+
+  <!-- ============================================================ 1. FV -->
+  <section class="gb-hero">
+    <div class="gb-inner">
+      <p class="gb-hero-year">2006 &nbsp;—&nbsp; 2026</p>
+      <h1 class="gb-hero-title">マヌカハニーひと筋<br><b>20年</b>になりました</h1>
+      <p class="gb-hero-lead">ニュージーランドの現場に毎年通い、本当にお薦めできるものだけを。マヌカハニー専門グリーンベイの楽天出店20周年を、9月ひと月かけてお祝いします。</p>
+
+      <!-- ▼差し替え: 専用FVビジュアルができたら下記 figure を画像1枚に置換 -->
+      <div class="gb-hero-visual">
+        <img src="images/hero/product-hero.jpg" alt="GREEN BAY PREMIUM マヌカハニーと、はちみつをすくうディッパー">
+      </div>
+
+      <div class="gb-hero-btns">
+        <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">20周年福袋セットを見る</a>
+        <a href="#schedule" class="gb-btn gb-btn--line">9月のクーポン日程</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 2. 20周年福袋 -->
+  <section class="gb-fukubukuro">
+    <div class="gb-inner">
+      <p class="gb-kicker is-ja">9月の目玉・会期中ずっと</p>
+      <h2 class="gb-h2">開店20周年 福袋セット</h2>
+
+      <div class="gb-fuku-grid">
+        <!-- ▼差し替え: images/fukubukuro/banner.jpg -->
+        <div class="gb-fuku-banner">
+          <img src="images/fukubukuro/banner.jpg" alt="ありがとう 楽天出店20周年記念祭 UMF10+ & UMF15+ 食べ比べセット 50%OFFクーポン">
+        </div>
+
+        <div class="gb-fuku-body">
+          <p>UMF10＋ と UMF15＋ の食べ比べセット。「10＋15＋開店20周年福袋セット50％OFFクーポン」をお使いいただくと、9月の会期を通して半額でお求めいただけます。</p>
+          <p>まずはこのセットで、グリーンベイのマヌカハニーの風味の違いを確かめていただけたらうれしいです。</p>
+
+          <div class="gb-price">
+            <div class="gb-price-row">通常価格 <s>10,910円</s> のところ</div>
+            <div class="gb-price-now">
+              <span>クーポン利用で</span>
+              <span class="num">5,455</span><span class="yen">円</span><span class="tax">税込</span>
+            </div>
+            <span class="gb-price-badge">50％OFF</span>
+          </div>
+
+          <div class="gb-fuku-btns">
+            <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">福袋セットの商品ページへ</a>
+            <a href="#" class="gb-btn gb-btn--line" data-coupon="fukubukuro">50％OFFクーポンを獲得</a>
+          </div>
+          <p class="gb-note">※クーポンの獲得URLは、配布開始後にこのページへ反映します。利用条件・発行数は楽天市場のクーポンページをご確認ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 3. クーポン日程 -->
+  <section class="gb-schedule" id="schedule">
+    <div class="gb-inner">
+      <p class="gb-kicker is-ja">20周年記念祭の歩き方</p>
+      <h2 class="gb-h2">9月のクーポン日程</h2>
+      <p class="gb-lead">
+        9月は、期間ごとに使えるクーポンが切り替わります。お買い物のタイミングの目安にどうぞ。
+      </p>
+
+      <div class="gb-countdown" id="countdown" hidden>
+        <p class="cd-label" id="cd-label">次のクーポン開放まで</p>
+        <div class="cd-clock" id="cd-clock">--:--:--:--</div>
+        <span class="cd-target" id="cd-target"></span>
+      </div>
+
+      <ul class="gb-timeline">
+        <li class="is-through">
+          <p class="gb-tl-date">9月 会期中<span class="time">ずっと使えます</span></p>
+          <p class="gb-tl-name">開店20周年 福袋セット 50％OFFクーポン</p>
+          <p class="gb-tl-desc">UMF10＋・UMF15＋の食べ比べセットが対象。9月の会期を通してご利用いただけます。</p>
+          <a href="#" class="gb-tl-link" data-coupon="fukubukuro">クーポンを獲得する</a>
+        </li>
+        <li>
+          <p class="gb-tl-date">9/4<span class="time">20:00 – 23:59 ／ 4時間限定</span></p>
+          <p class="gb-tl-name">4時間限定 スペシャルクーポン</p>
+          <p class="gb-tl-desc">UMF10＋・UMF20＋が1個から50％OFF。通常より割引の大きい、この4時間だけの特別クーポンです。</p>
+          <a href="#" class="gb-tl-link" data-coupon="flash4h">クーポンを獲得する</a>
+        </li>
+        <li>
+          <p class="gb-tl-date">9/5<span class="time">00:00 – 23:59 ／ 24時間限定</span></p>
+          <p class="gb-tl-name">24時間限定 タイムセールクーポン</p>
+          <p class="gb-tl-desc">いつものタイムセールクーポンを、この1日限定で。</p>
+          <a href="#" class="gb-tl-link" data-coupon="time24h">クーポンを獲得する</a>
+        </li>
+        <li>
+          <p class="gb-tl-date">9/6 – 9/11<span class="time">9/6 0:00 – 9/11 1:59</span></p>
+          <p class="gb-tl-name">通常クーポン</p>
+          <p class="gb-tl-desc">記念祭のあいだ使える通常クーポン。ゆっくり選びたい方に。</p>
+          <a href="#" class="gb-tl-link" data-coupon="regular">クーポンを獲得する</a>
+        </li>
+        <li>
+          <p class="gb-tl-date">9/9 – 9/11<span class="time">9/9 20:00 – 9/11 1:59 ／ 30時間限定</span></p>
+          <p class="gb-tl-name">30時間限定 タイムセールクーポン</p>
+          <p class="gb-tl-desc">記念祭のラストスパート。30時間限定のタイムセールクーポンです。</p>
+          <a href="#" class="gb-tl-link" data-coupon="time30h">クーポンを獲得する</a>
+        </li>
+      </ul>
+      <p class="gb-note">※各クーポンの獲得URL・利用条件・発行数は、配布開始後に楽天市場のクーポンページでご確認ください。日程は変更となる場合があります。</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ 4. ここまでの歩み -->
+  <section class="gb-story">
+    <div class="gb-inner">
+      <p class="gb-kicker">Our 20 years</p>
+      <h2 class="gb-h2">ここまでの歩み</h2>
+      <p class="gb-story-intro">
+        一さじのマヌカハニーから始まった、グリーンベイの20年をたどります。
+      </p>
+
+      <div class="gb-chapter">
+        <p class="gb-chapter-year">1997</p>
+        <p class="gb-chapter-tag">出会い</p>
+        <p class="gb-chapter-text">創業者の堀井昭一は、勤めていた会社を定年後、1年間ニュージーランドでホームステイをしながら語学留学へ。そこで風邪をひいたとき、ホストファミリーが食べさせてくれたのがマヌカハニーでした。これが、マヌカハニーとの出会いです。</p>
+        <div class="gb-chapter-photos is-pair">
+          <figure>
+            <img src="images/story/homestay.jpg" alt="ニュージーランド滞在中の創業者 堀井昭一">
+          </figure>
+          <figure>
+            <img src="images/story/hostfamily.jpg" alt="ホストファミリーと囲んだお茶の時間">
+            <figcaption>滞在先のご家族と。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="gb-chapter">
+        <p class="gb-chapter-year">2000</p>
+        <p class="gb-chapter-tag">創業</p>
+        <p class="gb-chapter-text">マヌカハニーにすっかり惚れ込んだ創業者は、その後も何度もニュージーランドへ通い、取引先を開拓。約3年の準備期間を経て、2000年10月に正式にマヌカハニーの輸入会社を設立しました。このとき、創業者は66歳でした。</p>
+        <div class="gb-chapter-photos">
+          <figure>
+            <img src="images/story/supplier.jpg" alt="ニュージーランドの取引先と">
+            <figcaption>現地の取引先と。何度も足を運び、関係を築きました。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="gb-chapter">
+        <p class="gb-chapter-year is-word">二代目</p>
+        <p class="gb-chapter-tag">受け継ぐ</p>
+        <p class="gb-chapter-text">現在の店長・堀井慎一郎は、創業者の息子として会社に勤めるかたわら、主にPC面で父の会社を手伝っていました。やがて、会社の代表を引き継ぐことになります。</p>
+        <div class="gb-chapter-photos">
+          <figure>
+            <img src="images/story/meeting.jpg" alt="ニュージーランドでの打ち合わせ。左から2人目が堀井慎一郎">
+            <figcaption>現地での打ち合わせ。左から2人目が堀井慎一郎。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="gb-chapter">
+        <p class="gb-chapter-year">2006</p>
+        <p class="gb-chapter-tag">楽天出店</p>
+        <p class="gb-chapter-text">2006年8月、楽天市場店が開店しました。インターネットでのお買い物が少しずつ一般的になっていった頃で、「本当に売れるのかな」と思ったのを覚えています。ありがたいことに順調に運営でき、楽天市場からいくつかの表彰もいただくまでになりました。</p>
+        <div class="gb-chapter-photos">
+          <figure>
+            <img src="images/story/plane.jpg" alt="ニュージーランド国内線の小型機の前で">
+            <figcaption>産地へ向かう、ニュージーランド国内の移動。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="gb-chapter">
+        <p class="gb-chapter-year is-word">毎年</p>
+        <p class="gb-chapter-tag">現場へ</p>
+        <p class="gb-chapter-text">グリーンベイのポリシーは、毎年ニュージーランドの現場を訪問すること。そして、本当にお薦めできる商品だけを販売すること。この2つを、創業時から今まで変わらず大切にしています。</p>
+        <div class="gb-chapter-photos is-pair">
+          <figure>
+            <img src="images/story/factory.jpg" alt="ニュージーランドの製造工場を訪問">
+          </figure>
+          <figure>
+            <img src="images/story/apiary.jpg" alt="マヌカの養蜂場にて。創業者と店長">
+            <figcaption>養蜂場にて。右が創業者、左が店長。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="gb-chapter">
+        <p class="gb-chapter-year is-word">ひとつの気づき</p>
+        <p class="gb-chapter-tag">課題</p>
+        <p class="gb-pullquote">
+          「おいしいけれど、毎日食べるには少しクセが強い」
+        </p>
+        <p class="gb-chapter-text">20年以上マヌカハニーを販売してきたなかで、課題に感じてきたことがあります。マヌカハニーに関する論文は数多くありますが、その多くは継続した摂取が前提です。モノによって美味しいものはあるものの、毎日続けるには、少しクセが強すぎると感じてきました。</p>
+      </div>
+
+      <div class="gb-chapter">
+        <p class="gb-chapter-year is-word">出会い直し</p>
+        <p class="gb-chapter-tag">技術</p>
+        <p class="gb-chapter-text">毎年、産地を訪問するなかで、独自のフィルタリング技術によって、必要な栄養素はそのままに、異物を徹底除去するメーカーと出会いました。</p>
+      </div>
+
+      <div class="gb-chapter">
+        <p class="gb-chapter-year">2026</p>
+        <p class="gb-chapter-tag">チャレンジの年</p>
+        <p class="gb-chapter-text">楽天出店20周年を迎える2026年は、グリーンベイにとって大きなチャレンジの年になりました。嬉しいことに、リニューアルしたマヌカハニーは、「食べやすい」「飽きずに食べられる」「なめらか」といったお言葉をいただいています。</p>
+        <div class="gb-chapter-photos">
+          <figure>
+            <img src="images/renewal/drizzle.jpg" alt="紅茶にマヌカハニーをとかす">
+          </figure>
+        </div>
+      </div>
+
+      <p class="gb-story-close">
+        これからも毎年、現場へ。<br>本当にお薦めできるものだけを、お届けします。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ 5. リニューアル -->
+  <section class="gb-renewal">
+    <div class="gb-inner">
+      <div class="gb-renewal-grid">
+        <!-- ▼差し替え: images/renewal/tea.jpg -->
+        <div class="gb-renewal-photo">
+          <img src="images/renewal/tea.jpg" alt="マヌカハニーと紅茶、ドライフルーツとナッツ">
+        </div>
+        <div class="gb-renewal-body">
+          <p class="gb-kicker is-ja">リニューアル</p>
+          <h2 class="gb-h2">毎日でも、飽きずに。</h2>
+          <p>必要な栄養素はそのままに、雑味のもとになる異物を徹底除去。スプーンでそのまま、紅茶やヨーグルトに、パンに。続けることを前提に選んでほしいから、まず「食べやすさ」を大切にしました。</p>
+          <div class="gb-words">
+            <span>食べやすい</span>
+            <span>飽きない</span>
+            <span>なめらか</span>
+          </div>
+          <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--line">食べ比べセットで試す</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 6. 店長メッセージ -->
+  <section class="gb-message">
+    <div class="gb-inner">
+      <p class="gb-kicker is-ja">店長より</p>
+      <h2 class="gb-h2">20年分の感謝を込めて</h2>
+
+      <div class="gb-message-inner">
+        <!-- ▼差し替え: images/story/apiary.jpg -->
+        <figure class="gb-message-photo">
+          <img src="images/story/apiary.jpg" alt="ニュージーランドの養蜂場に立つ創業者と店長">
+          <figcaption>創業者・堀井昭一（右）と、店長・堀井慎一郎（左）。</figcaption>
+        </figure>
+
+        <div class="gb-message-body">
+          <p>2006年8月、楽天市場店が開店しました。当時はまだ、インターネットでのお買い物があまり一般的ではなかった頃で、「本当に売れるのかな」と思ったのを記憶しています。</p>
+          <p>嬉しいことに順調に運営することができ、楽天市場よりいくつかの表彰をいただくまでになりました。このような形で20周年を迎えることができ、感謝しかございません。</p>
+          <p>20年以上マヌカハニーを販売してきたなかで、ひとつ課題に感じてきたことがございます。マヌカハニーに関する論文は数多くございますが、その多くは継続した摂取が前提です。マヌカハニーはモノによって美味しいものがありますが、毎日食べるには少しクセが強すぎるなと感じてきました。</p>
+          <p>そして毎年ニュージーランドの産地を訪問するなかで、独自のフィルタリング技術によって、必要な栄養素はそのままに異物を徹底除去するメーカーとの出会いがありました。</p>
+          <p>楽天出店20周年を迎える2026年は、グリーンベイにとって大きなチャレンジの年となりました。そして嬉しいことに、リニューアルされたマヌカハニーは、皆さまに「食べやすい」「飽きずに食べられる」「滑らか」などとお褒めの言葉をいただいております。</p>
+          <p>グリーンベイはこれからも毎年現場を訪問しながら、本当にお薦めできる商品だけを販売してまいります。よろしければ、今後ともよろしくお願いいたします。</p>
+
+          <div class="gb-sign">
+            マヌカハニー専門グリーンベイ公式店
+            <b>店長　堀井 慎一郎</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 7. 最後のCTA -->
+  <section class="gb-final">
+    <div class="gb-inner">
+      <p class="gb-final-title">
+        20年分の<b>「ありがとう」</b>を、<br>9月の記念祭で。
+      </p>
+      <div class="gb-final-btns">
+        <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">20周年福袋セットを見る</a>
+        <a href="#schedule" class="gb-btn gb-btn--ghost">9月のクーポン日程を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 注意事項 -->
+  <section class="gb-foot">
+    <p>※本ページに記載の価格・対象商品・クーポンの利用条件・日程は、変更となる場合がございます。</p>
+    <p>※クーポンの獲得URL・利用条件・発行数につきましては、配布開始後に楽天市場のクーポンページをご確認ください。</p>
+    <p>※「50％OFF」等の割引率は、対象クーポンを利用した場合の価格です。クーポンには利用期間・対象商品・発行数の制限があります。</p>
+    <p>マヌカハニー専門グリーンベイ 楽天市場店：
+      <a href="https://www.rakuten.co.jp/manuka/">https://www.rakuten.co.jp/manuka/</a>
+    </p>
+  </section>
+
+</div>
+
+<!-- スマホ追従CTA(PCでは非表示) -->
+<div class="gb-sticky">
+  <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">福袋を見る</a>
+  <a href="#schedule" class="gb-btn gb-btn--line">クーポン日程</a>
+</div>
+
+<script>
+/* ==========================================================================
+   クーポン獲得URLの一括設定
+   ▼配布開始後、下記 COUPONS の各URLを差し替えてください。
+     空文字 "" のあいだは、対象ボタン/リンクが「準備中」表示になります。
+   ========================================================================== */
+var COUPONS = {
+  fukubukuro : "",   /* 開店20周年 福袋セット 50%OFFクーポン(9月 会期中) */
+  flash4h    : "",   /* 9/4 20:00-23:59  4時間限定スペシャルクーポン */
+  time24h    : "",   /* 9/5 00:00-23:59  24時間限定タイムセールクーポン */
+  regular    : "",   /* 9/6-9/11         通常クーポン */
+  time30h    : ""    /* 9/9 20:00-9/11 1:59  30時間限定タイムセールクーポン */
+};
+
+(function(){
+  var nodes = document.querySelectorAll("[data-coupon]");
+  for (var i = 0; i < nodes.length; i++){
+    var el  = nodes[i];
+    var key = el.getAttribute("data-coupon");
+    var url = COUPONS[key];
+    if (!el.getAttribute("data-label")){ el.setAttribute("data-label", el.textContent.trim()); }
+    if (url){
+      el.setAttribute("href", url);
+      el.classList.remove("is-pending");
+      el.removeAttribute("aria-disabled");
+      el.textContent = el.getAttribute("data-label");
+    } else {
+      el.setAttribute("href", "#schedule");
+      el.classList.add("is-pending");
+      el.setAttribute("aria-disabled", "true");
+      el.textContent = el.getAttribute("data-label") + "（準備中）";
+    }
+  }
+})();
+
+/* ==========================================================================
+   FVビジュアルの光(ゆっくり・ランダム間隔)
+   ========================================================================== */
+(function(){
+  var el = document.querySelector(".gb-hero-visual");
+  if (!el) return;
+  function play(){
+    el.classList.remove("is-shine");
+    void el.offsetWidth;
+    el.classList.add("is-shine");
+  }
+  function loop(){
+    setTimeout(function(){ play(); loop(); }, 4200 + Math.random() * 4200);
+  }
+  setTimeout(function(){ play(); loop(); }, 900);
+})();
+
+/* ==========================================================================
+   次のクーポン開放までのカウントダウン
+   ▼日程が確定したら PHASES の日時(JST)を調整してください。
+     月は 0 始まり(8 = 9月)。
+   ========================================================================== */
+(function(){
+  var box = document.getElementById("countdown");
+  if (!box) return;
+
+  var Y = 2026;
+  function jst(mo, d, h, mi){ return new Date(Date.UTC(Y, mo, d, h - 9, mi, 0)); }
+
+  var PHASES = [
+    { label:"4時間限定スペシャルクーポンまで",  start: jst(8,4,20,0),  end: jst(8,4,23,59), openText:"4時間限定スペシャルクーポン 開催中" },
+    { label:"24時間限定タイムセールまで",        start: jst(8,5,0,0),   end: jst(8,5,23,59), openText:"24時間限定タイムセールクーポン 開催中" },
+    { label:"通常クーポン開始まで",              start: jst(8,6,0,0),   end: jst(8,11,1,59), openText:"通常クーポン 配布中" },
+    { label:"30時間限定タイムセールまで",        start: jst(8,9,20,0),  end: jst(8,11,1,59), openText:"30時間限定タイムセールクーポン 開催中" }
+  ];
+
+  var elLabel  = document.getElementById("cd-label");
+  var elClock  = document.getElementById("cd-clock");
+  var elTarget = document.getElementById("cd-target");
+
+  function fmtDate(dt){
+    return (dt.getMonth() + 1) + "/" + dt.getDate() + " " +
+      ("0" + dt.getHours()).slice(-2) + ":" + ("0" + dt.getMinutes()).slice(-2);
+  }
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+
+  function tick(){
+    var now = new Date();
+
+    /* 開催中フェーズがあれば、それを表示 */
+    var i, p;
+    for (i = 0; i < PHASES.length; i++){
+      p = PHASES[i];
+      if (now >= p.start && now <= p.end){
+        elLabel.textContent = "ただいま";
+        elClock.textContent = p.openText;
+        elTarget.textContent = fmtDate(p.start) + " 〜 " + fmtDate(p.end);
+        box.hidden = false;
+        return;
+      }
+    }
+    /* 次に始まるフェーズを探す */
+    var next = null;
+    for (i = 0; i < PHASES.length; i++){
+      if (PHASES[i].start > now && (next === null || PHASES[i].start < next.start)){
+        next = PHASES[i];
+      }
+    }
+    if (!next){ box.hidden = true; return; }
+
+    var diff = Math.floor((next.start - now) / 1000);
+    var d = Math.floor(diff / 86400);
+    var h = Math.floor((diff % 86400) / 3600);
+    var m = Math.floor((diff % 3600) / 60);
+    var s = diff % 60;
+
+    elLabel.textContent = next.label;
+    elClock.textContent = (d > 0 ? d + "日 " : "") + pad(h) + ":" + pad(m) + ":" + pad(s);
+    elTarget.textContent = fmtDate(next.start) + " スタート";
+    box.hidden = false;
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
