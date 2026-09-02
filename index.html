@@ -698,13 +698,15 @@ body{ padding-bottom:74px; }
   .gb-renewal-photo{ margin:0; }
 
   .gb-message .gb-inner{ max-width:640px; margin:0 auto; }
-  .gb-message-inner{
-    display:grid;
-    grid-template-columns:230px 1fr;
-    gap:32px;
-    align-items:start;
+  /* PCでは写真を左に回り込ませ、本文が写真の下まで回り込むようにする */
+  .gb-message-inner{ overflow:hidden; }
+  .gb-message-photo{
+    float:left;
+    width:246px;
+    margin:5px 30px 14px 0;
   }
-  .gb-message-photo{ margin:0; }
+  .gb-message-body::after{ content:""; display:block; clear:both; }
+  .gb-message-body .gb-sign{ clear:both; }
 
   .gb-final-title{ font-size:28px; }
   .gb-final-btns{ flex-direction:row; justify-content:center; }
@@ -966,13 +968,13 @@ body{ padding-bottom:74px; }
       <h2 class="gb-h2">20年分の感謝を込めて</h2>
 
       <div class="gb-message-inner">
-        <!-- ▼差し替え: images/story/apiary.jpg -->
-        <figure class="gb-message-photo">
-          <img src="images/story/apiary.jpg" alt="ニュージーランドの養蜂場に立つ創業者と店長">
-          <figcaption>創業者・堀井昭一（右）と、店長・堀井慎一郎（左）。</figcaption>
-        </figure>
-
         <div class="gb-message-body">
+          <!-- ▼差し替え: images/story/apiary.jpg -->
+          <figure class="gb-message-photo">
+            <img src="images/story/apiary.jpg" alt="ニュージーランドの養蜂場に立つ創業者と店長">
+            <figcaption>創業者・堀井昭一（右）と、店長・堀井慎一郎（左）。</figcaption>
+          </figure>
+
           <p>2006年8月、楽天市場店が開店しました。当時はまだ、インターネットでのお買い物があまり一般的ではなかった頃で、「本当に売れるのかな」と思ったのを記憶しています。</p>
           <p>嬉しいことに順調に運営することができ、楽天市場よりいくつかの表彰をいただくまでになりました。このような形で20周年を迎えることができ、感謝しかございません。</p>
           <p>20年以上マヌカハニーを販売してきたなかで、ひとつ課題に感じてきたことがございます。マヌカハニーに関する論文は数多くございますが、その多くは継続した摂取が前提です。マヌカハニーはモノによって美味しいものがありますが、毎日食べるには少しクセが強すぎるなと感じてきました。</p>
