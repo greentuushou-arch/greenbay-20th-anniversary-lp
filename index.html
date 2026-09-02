@@ -24,9 +24,9 @@
   --bg-side:#f2e4cf;        /* 本体の外側 */
   --paper:#fffdf8;          /* 本体カラム */
   --paper-warm:#faf1e0;     /* うっすら色のセクション */
-  --honey-pale:#fbe7c4;     /* 淡いはちみつ */
-  --honey:#e7971b;          /* 主役のはちみつオレンジ */
-  --honey-mid:#f2b53a;      /* 明るいはちみつ */
+  --honey-pale:#fbe7c4;     /* 淡いはちみつ(セクション地) */
+  --honey:#ff6600;          /* BEAMS風オレンジ(主役アクセント) */
+  --honey-mid:#ff8a3d;      /* 明るいオレンジ */
   --amber-deep:#5f3610;     /* 深い琥珀(暗色セクション) */
   --ink:#3c2a17;            /* 本文 */
   --ink-soft:#6f5943;       /* 補助テキスト */
@@ -323,109 +323,157 @@ img{ max-width:100%; display:block; }
    3. 9月のクーポン日程
    ========================================================================== */
 .gb-schedule{
-  background:var(--paper);
+  background:#f6ead4;               /* 温かみのある地色。白いチケットを引き立てる */
   padding:56px 0;
 }
 
-.gb-countdown{
-  margin:0 0 34px;
-  padding:18px 20px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  background:var(--paper-warm);
-  text-align:center;
-}
-.gb-countdown .cd-label{
-  font-size:13.5px;
-  letter-spacing:.1em;
-  color:var(--ink-soft);
-  margin:0 0 8px;
-}
-.gb-countdown .cd-clock{
-  font-family:"Josefin Sans",sans-serif;
-  font-size:29px;
-  font-weight:400;
-  letter-spacing:.06em;
-  color:var(--amber-deep);
-}
-.gb-countdown .cd-target{
-  display:block;
-  margin-top:6px;
-  font-size:13.5px;
-  letter-spacing:.04em;
-  color:var(--honey);
-  font-weight:700;
-}
-
-.gb-timeline{ list-style:none; margin:0; padding:0; }
-.gb-timeline > li{
+/* ---- カウントダウン(パタパタ時計 / ドリームクラフト意匠を踏襲) ---- */
+#mainCountdown{ display:flex; flex-direction:column; align-items:center; margin:0 0 34px; }
+.gb-cd-bubble{
   position:relative;
-  padding:0 0 30px 26px;
-  border-left:2px solid var(--gold-soft);
+  background:var(--amber-deep); color:#fff;
+  font-weight:700; font-size:13.5px; letter-spacing:.04em;
+  padding:10px 22px; border-radius:999px; margin-bottom:16px;
 }
-.gb-timeline > li:last-child{ padding-bottom:0; }
-.gb-timeline > li::before{
-  content:"";
-  position:absolute;
-  left:-8px; top:3px;
-  width:14px; height:14px;
-  border-radius:50%;
-  background:var(--honey);
-  border:3px solid var(--paper);
+.gb-cd-bubble::after{
+  content:""; position:absolute; left:50%; bottom:-9px; transform:translateX(-50%);
+  border-width:10px 8px 0 8px; border-style:solid;
+  border-color:var(--amber-deep) transparent transparent transparent;
 }
-.gb-timeline > li.is-through::before{ background:var(--amber-deep); }
+.flipclock{
+  display:inline-flex; gap:clamp(10px,3vw,20px);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0) 0 0/6px 6px,
+    #3a2208;
+  border-radius:16px; padding:18px 16px 14px;
+}
+.fc-group{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+.fc-digits{ display:flex; gap:3px; }
+.fc-tile{ position:relative; width:clamp(26px,6.2vw,44px); height:clamp(36px,8.6vw,60px); perspective:220px; }
+.fc-tile .flip-inner{ position:absolute; inset:0; transform-style:preserve-3d; transition:transform .5s cubic-bezier(.45,0,.2,1); }
+.fc-tile.flip .flip-inner{ transform:rotateX(-180deg); }
+.fc-tile .face{
+  position:absolute; inset:0;
+  background:linear-gradient(#4a3316,#281905); color:#fff;
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-weight:600; font-size:clamp(20px,5vw,34px);
+  display:flex; align-items:center; justify-content:center;
+  border-radius:5px; backface-visibility:hidden; font-variant-numeric:tabular-nums;
+}
+.fc-tile .face::after{ content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:rgba(0,0,0,.55); }
+.fc-tile .face.back{ transform:rotateX(180deg); }
+.fc-label{ font-size:12px; letter-spacing:.04em; color:var(--honey-mid); font-weight:700; }
 
-.gb-tl-date{
+/* ---- クーポンチケット(画像なし・CSSのみ) ---- */
+.gb-tickets{ display:flex; flex-direction:column; gap:18px; }
+.gb-ticket{
+  --notch:#f6ead4;                 /* = セクション地色。ミシン目の穴 */
+  position:relative;
+  display:grid;
+  grid-template-columns:92px 1fr;
+  text-decoration:none;
+  color:var(--ink);
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 16px 36px -22px rgba(95,54,16,.55);
+  overflow:hidden;
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+.gb-ticket:hover{ transform:translateY(-2px); box-shadow:0 22px 44px -22px rgba(95,54,16,.6); }
+.gb-ticket:active{ transform:translateY(0); }
+
+.gb-ticket-stub{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px 6px;
+  background:linear-gradient(165deg,var(--honey-mid),var(--honey));
+  color:#fff;
+  line-height:1.12;
+}
+.gb-ticket-stub .big{
   font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
   font-weight:600;
-  font-size:16px;
-  letter-spacing:.02em;
-  color:var(--amber-deep);
-  margin:0 0 4px;
+  font-size:30px;
+  letter-spacing:.01em;
 }
-.gb-tl-date .time{
-  font-size:13.5px;
-  color:var(--ink-soft);
-  font-weight:400;
-  margin-left:.5em;
-  letter-spacing:0;
-}
-.gb-tl-name{
+.gb-ticket-stub .sub{
+  font-size:11px;
   font-weight:700;
+  letter-spacing:.16em;
+  margin-top:5px;
+}
+.gb-ticket-stub.is-ja .big{
+  font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
+  font-weight:700;
+  font-size:18px;
+  letter-spacing:.05em;
+}
+
+/* ミシン目(穴＋破線) */
+.gb-ticket::before,
+.gb-ticket::after{
+  content:"";
+  position:absolute;
+  left:85px;
+  width:14px; height:14px;
+  border-radius:50%;
+  background:var(--notch);
+}
+.gb-ticket::before{ top:-8px; }
+.gb-ticket::after{ bottom:-8px; }
+
+.gb-ticket-body{
+  padding:17px 20px 18px;
+  border-left:2px dashed var(--gold-soft);
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.gb-ticket-mark{
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--honey);
+}
+.gb-ticket-name{
+  font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
   font-size:17px;
-  margin:0 0 4px;
-  color:var(--ink);
+  font-weight:700;
+  line-height:1.5;
 }
-.gb-tl-desc{
-  font-size:15px;
+.gb-ticket-meta{
+  font-size:12.5px;
   color:var(--ink-soft);
-  margin:0 0 12px;
+  line-height:1.65;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
 }
-.gb-tl-link{
+.gb-ticket-cta{
+  margin-top:7px;
+  font-size:14px;
+  font-weight:700;
+  color:var(--amber-deep);
   display:inline-flex;
   align-items:center;
   gap:.4em;
-  font-size:14.5px;
-  font-weight:700;
-  text-decoration:none;
-  color:#fff;
-  background:var(--honey);
-  padding:10px 20px;
-  border-radius:4px;
+  white-space:nowrap;
 }
-.gb-tl-link::after{
+.gb-ticket-cta::after{
   content:"";
   width:6px; height:6px;
   border-top:2px solid currentColor;
   border-right:2px solid currentColor;
   transform:rotate(45deg);
+  flex:none;
 }
-.gb-tl-link.is-pending{
-  color:var(--ink-soft);
-  background:transparent;
-  border:1.5px solid var(--gold-soft);
-  pointer-events:none;
-}
+.gb-ticket.is-pending{ pointer-events:none; box-shadow:0 10px 24px -20px rgba(95,54,16,.5); }
+.gb-ticket.is-pending .gb-ticket-stub{ opacity:.85; }
+.gb-ticket.is-pending .gb-ticket-cta{ color:var(--ink-soft); }
 
 /* ==========================================================================
    4. ここまでの歩み(タイムスリップ)
@@ -687,7 +735,12 @@ body{ padding-bottom:74px; }
   .gb-fuku-btns{ flex-direction:row; }
   .gb-fuku-btns .gb-btn{ width:auto; flex:1; }
 
-  .gb-timeline > li{ padding-left:32px; }
+  .gb-ticket{ grid-template-columns:132px 1fr; }
+  .gb-ticket::before, .gb-ticket::after{ left:125px; }
+  .gb-ticket-stub .big{ font-size:34px; }
+  .gb-ticket-stub.is-ja .big{ font-size:21px; }
+  .gb-ticket-name{ font-size:18px; }
+  .gb-ticket-body{ padding:20px 26px; }
 
   /* 歩み:章を左右交互に */
   .gb-story .gb-inner{ max-width:620px; margin:0 auto; }
@@ -812,44 +865,105 @@ body{ padding-bottom:74px; }
       <h2 class="gb-h2">特別クーポン日程</h2>
       <p class="gb-lead">スーパーSALE期間中は、時間帯ごとに使えるクーポンが切り替わります。お買い物のタイミングの目安にどうぞ。</p>
 
-      <div class="gb-countdown" id="countdown" hidden>
-        <p class="cd-label" id="cd-label">次のクーポン開放まで</p>
-        <div class="cd-clock" id="cd-clock">--:--:--:--</div>
-        <span class="cd-target" id="cd-target"></span>
+      <div id="mainCountdown">
+        <div class="gb-cd-bubble" id="mainState">楽天スーパーSALE終了まであと</div>
+        <div class="flipclock" aria-label="楽天スーパーSALE終了までのカウントダウン">
+          <div class="fc-group">
+            <div class="fc-digits">
+              <div class="fc-tile" data-tile="d0"><div class="flip-inner"><div class="face front">0</div><div class="face back">0</div></div></div>
+              <div class="fc-tile" data-tile="d1"><div class="flip-inner"><div class="face front">0</div><div class="face back">0</div></div></div>
+            </div>
+            <div class="fc-label">日</div>
+          </div>
+          <div class="fc-group">
+            <div class="fc-digits">
+              <div class="fc-tile" data-tile="h0"><div class="flip-inner"><div class="face front">0</div><div class="face back">0</div></div></div>
+              <div class="fc-tile" data-tile="h1"><div class="flip-inner"><div class="face front">0</div><div class="face back">0</div></div></div>
+            </div>
+            <div class="fc-label">時間</div>
+          </div>
+          <div class="fc-group">
+            <div class="fc-digits">
+              <div class="fc-tile" data-tile="m0"><div class="flip-inner"><div class="face front">0</div><div class="face back">0</div></div></div>
+              <div class="fc-tile" data-tile="m1"><div class="flip-inner"><div class="face front">0</div><div class="face back">0</div></div></div>
+            </div>
+            <div class="fc-label">分</div>
+          </div>
+          <div class="fc-group">
+            <div class="fc-digits">
+              <div class="fc-tile" data-tile="s0"><div class="flip-inner"><div class="face front">0</div><div class="face back">0</div></div></div>
+              <div class="fc-tile" data-tile="s1"><div class="flip-inner"><div class="face front">0</div><div class="face back">0</div></div></div>
+            </div>
+            <div class="fc-label">秒</div>
+          </div>
+        </div>
       </div>
 
-      <ul class="gb-timeline">
-        <li class="is-through">
-          <p class="gb-tl-date">9月 会期中<span class="time">ずっと使えます</span></p>
-          <p class="gb-tl-name">開店20周年 福袋セット 50％OFFクーポン</p>
-          <p class="gb-tl-desc">UMF10＋・UMF15＋の食べ比べセットが対象。9月の会期を通してご利用いただけます。</p>
-          <a href="#" class="gb-tl-link" data-coupon="fukubukuro">クーポンはこちら</a>
-        </li>
-        <li>
-          <p class="gb-tl-date">9/4<span class="time">20:00 – 23:59 ／ 4時間限定</span></p>
-          <p class="gb-tl-name">4時間限定 スペシャルクーポン</p>
-          <p class="gb-tl-desc">UMF10＋・UMF20＋が1個から50％OFF。通常より割引の大きい、この4時間だけの特別クーポンです。</p>
-          <a href="#" class="gb-tl-link" data-coupon="flash4h">クーポンはこちら</a>
-        </li>
-        <li>
-          <p class="gb-tl-date">9/5<span class="time">00:00 – 23:59 ／ 24時間限定</span></p>
-          <p class="gb-tl-name">24時間限定 タイムセールクーポン</p>
-          <p class="gb-tl-desc">5日限定！ 5の付く日に、とびっきりお得なタイムセールクーポン。</p>
-          <a href="#" class="gb-tl-link" data-coupon="time24h">クーポンはこちら</a>
-        </li>
-        <li>
-          <p class="gb-tl-date">9/6 – 9/11<span class="time">9/6 0:00 – 9/11 1:59</span></p>
-          <p class="gb-tl-name">スーパーSALEクーポン</p>
-          <p class="gb-tl-desc">スーパーSALE期間中、いつでも使えるクーポン。ゆっくり選びたい方に。</p>
-          <a href="#" class="gb-tl-link" data-coupon="regular">クーポンはこちら</a>
-        </li>
-        <li>
-          <p class="gb-tl-date">9/9 – 9/11<span class="time">9/9 20:00 – 9/11 1:59 ／ 30時間限定</span></p>
-          <p class="gb-tl-name">30時間限定 ラストスパートクーポン</p>
-          <p class="gb-tl-desc">スーパーSALE最後の30時間。ここで決めたい方へ。</p>
-          <a href="#" class="gb-tl-link" data-coupon="time30h">クーポンはこちら</a>
-        </li>
-      </ul>
+      <div class="gb-tickets">
+
+        <a href="#" class="gb-ticket" data-coupon="fukubukuro">
+          <span class="gb-ticket-stub">
+            <span class="big">50%</span>
+            <span class="sub">OFF</span>
+          </span>
+          <span class="gb-ticket-body">
+            <span class="gb-ticket-mark">Coupon</span>
+            <span class="gb-ticket-name">開店20周年 福袋セット</span>
+            <span class="gb-ticket-meta">9月の会期中ずっと<br>食べ比べセットが対象</span>
+            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          </span>
+        </a>
+
+        <a href="#" class="gb-ticket" data-coupon="flash4h">
+          <span class="gb-ticket-stub is-ja">
+            <span class="big">4時間<br>限定</span>
+          </span>
+          <span class="gb-ticket-body">
+            <span class="gb-ticket-mark">Start Coupon</span>
+            <span class="gb-ticket-name">スペシャルクーポン</span>
+            <span class="gb-ticket-meta">9/4 20:00 – 23:59<br>種類いろいろ・一覧ページへ</span>
+            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          </span>
+        </a>
+
+        <a href="#" class="gb-ticket" data-coupon="time24h">
+          <span class="gb-ticket-stub is-ja">
+            <span class="big">24時間<br>限定</span>
+          </span>
+          <span class="gb-ticket-body">
+            <span class="gb-ticket-mark">Coupon</span>
+            <span class="gb-ticket-name">タイムセールクーポン</span>
+            <span class="gb-ticket-meta">9/5 0:00 – 23:59<br>5の付く日のタイムセール</span>
+            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          </span>
+        </a>
+
+        <a href="#" class="gb-ticket" data-coupon="regular">
+          <span class="gb-ticket-stub">
+            <span class="big">SALE</span>
+            <span class="sub">9/6 – 11</span>
+          </span>
+          <span class="gb-ticket-body">
+            <span class="gb-ticket-mark">Coupon</span>
+            <span class="gb-ticket-name">スーパーSALEクーポン</span>
+            <span class="gb-ticket-meta">9/6 0:00 – 9/11 1:59<br>SALE期間中いつでも</span>
+            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          </span>
+        </a>
+
+        <a href="#" class="gb-ticket" data-coupon="time30h">
+          <span class="gb-ticket-stub is-ja">
+            <span class="big">30時間<br>限定</span>
+          </span>
+          <span class="gb-ticket-body">
+            <span class="gb-ticket-mark">Coupon</span>
+            <span class="gb-ticket-name">ラストスパートクーポン</span>
+            <span class="gb-ticket-meta">9/9 20:00 – 9/11 1:59<br>SALE最後の30時間</span>
+            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          </span>
+        </a>
+
+      </div>
       <p class="gb-note">※各クーポンの獲得URL・利用条件・発行数は、配布開始後に楽天市場のクーポンページでご確認ください。日程は変更となる場合があります。</p>
     </div>
   </section>
@@ -1064,17 +1178,19 @@ var COUPONS = {
     var el  = nodes[i];
     var key = el.getAttribute("data-coupon");
     var url = COUPONS[key];
-    if (!el.getAttribute("data-label")){ el.setAttribute("data-label", el.textContent.trim()); }
+    /* ラベルを差し替える要素: チケットは中の [data-cta]、通常ボタンは自身 */
+    var cta = el.querySelector("[data-cta]") || el;
+    if (!cta.getAttribute("data-label")){ cta.setAttribute("data-label", cta.textContent.trim()); }
     if (url){
       el.setAttribute("href", url);
       el.classList.remove("is-pending");
       el.removeAttribute("aria-disabled");
-      el.textContent = el.getAttribute("data-label");
+      cta.textContent = cta.getAttribute("data-label");
     } else {
       el.setAttribute("href", "#schedule");
       el.classList.add("is-pending");
       el.setAttribute("aria-disabled", "true");
-      el.textContent = el.getAttribute("data-label") + "（準備中）";
+      cta.textContent = cta.getAttribute("data-label") + "（準備中）";
     }
   }
 })();
@@ -1097,72 +1213,64 @@ var COUPONS = {
 })();
 
 /* ==========================================================================
-   次のクーポン開放までのカウントダウン
-   ▼日程が確定したら PHASES の日時(JST)を調整してください。
-     月は 0 始まり(8 = 9月)。
+   楽天スーパーSALE 終了までのカウントダウン(パタパタ時計)
+   ▼日程が変わったら SALE_START / SALE_END を調整してください(日本時間)。
    ========================================================================== */
 (function(){
-  var box = document.getElementById("countdown");
-  if (!box) return;
+  var SALE_START = new Date('2026-09-04T20:00:00+09:00');
+  var SALE_END   = new Date('2026-09-11T01:59:00+09:00');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var Y = 2026;
-  function jst(mo, d, h, mi){ return new Date(Date.UTC(Y, mo, d, h - 9, mi, 0)); }
+  function pad(n){ return String(Math.max(0, n)).padStart(2, '0'); }
 
-  var PHASES = [
-    { label:"4時間限定スペシャルクーポンまで",  start: jst(8,4,20,0),  end: jst(8,4,23,59), openText:"4時間限定スペシャルクーポン 開催中" },
-    { label:"24時間限定タイムセールまで",        start: jst(8,5,0,0),   end: jst(8,5,23,59), openText:"24時間限定タイムセールクーポン 開催中" },
-    { label:"スーパーSALEクーポン開始まで",      start: jst(8,6,0,0),   end: jst(8,11,1,59), openText:"スーパーSALEクーポン 配布中" },
-    { label:"30時間限定ラストスパートまで",      start: jst(8,9,20,0),  end: jst(8,11,1,59), openText:"30時間限定ラストスパートクーポン 開催中" }
-  ];
+  var tileEls = {};
+  document.querySelectorAll('.fc-tile').forEach(function(el){ tileEls[el.dataset.tile] = el; });
+  if (!tileEls.d0) return;
 
-  var elLabel  = document.getElementById("cd-label");
-  var elClock  = document.getElementById("cd-clock");
-  var elTarget = document.getElementById("cd-target");
-
-  function fmtDate(dt){
-    return (dt.getMonth() + 1) + "/" + dt.getDate() + " " +
-      ("0" + dt.getHours()).slice(-2) + ":" + ("0" + dt.getMinutes()).slice(-2);
+  function setTile(key, digit){
+    var tile = tileEls[key];
+    if (!tile) return;
+    var front = tile.querySelector('.face.front');
+    var back  = tile.querySelector('.face.back');
+    if (front.textContent === digit) return;
+    if (reduceMotion){ front.textContent = digit; return; }
+    back.textContent = digit;
+    tile.classList.add('flip');
+    var inner = tile.querySelector('.flip-inner');
+    var done = function(){
+      inner.removeEventListener('transitionend', done);
+      inner.style.transition = 'none';
+      tile.classList.remove('flip');
+      front.textContent = digit;
+      void inner.offsetWidth;
+      inner.style.transition = '';
+    };
+    inner.addEventListener('transitionend', done);
   }
-  function pad(n){ return (n < 10 ? "0" : "") + n; }
 
-  function tick(){
+  var stateEl = document.getElementById('mainState');
+
+  function update(){
     var now = new Date();
+    var target, txt;
+    if (now < SALE_START){ target = SALE_START; txt = '楽天スーパーSALE開始まであと'; }
+    else if (now < SALE_END){ target = SALE_END; txt = '楽天スーパーSALE終了まであと'; }
+    else { target = null; txt = '楽天スーパーSALEは終了しました'; }
+    if (stateEl) stateEl.textContent = txt;
 
-    /* 開催中フェーズがあれば、それを表示 */
-    var i, p;
-    for (i = 0; i < PHASES.length; i++){
-      p = PHASES[i];
-      if (now >= p.start && now <= p.end){
-        elLabel.textContent = "ただいま";
-        elClock.textContent = p.openText;
-        elTarget.textContent = fmtDate(p.start) + " 〜 " + fmtDate(p.end);
-        box.hidden = false;
-        return;
-      }
-    }
-    /* 次に始まるフェーズを探す */
-    var next = null;
-    for (i = 0; i < PHASES.length; i++){
-      if (PHASES[i].start > now && (next === null || PHASES[i].start < next.start)){
-        next = PHASES[i];
-      }
-    }
-    if (!next){ box.hidden = true; return; }
-
-    var diff = Math.floor((next.start - now) / 1000);
-    var d = Math.floor(diff / 86400);
-    var h = Math.floor((diff % 86400) / 3600);
-    var m = Math.floor((diff % 3600) / 60);
-    var s = diff % 60;
-
-    elLabel.textContent = next.label;
-    elClock.textContent = (d > 0 ? d + "日 " : "") + pad(h) + ":" + pad(m) + ":" + pad(s);
-    elTarget.textContent = fmtDate(next.start) + " スタート";
-    box.hidden = false;
+    var t = target ? Math.floor(Math.max(0, target - now) / 1000) : 0;
+    var d = pad(Math.floor(t / 86400));
+    var h = pad(Math.floor((t % 86400) / 3600));
+    var m = pad(Math.floor((t % 3600) / 60));
+    var s = pad(t % 60);
+    setTile('d0', d[0]); setTile('d1', d[1]);
+    setTile('h0', h[0]); setTile('h1', h[1]);
+    setTile('m0', m[0]); setTile('m1', m[1]);
+    setTile('s0', s[0]); setTile('s1', s[1]);
   }
 
-  tick();
-  setInterval(tick, 1000);
+  update();
+  setInterval(update, 1000);
 })();
 </script>
 </body>
