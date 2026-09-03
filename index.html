@@ -337,21 +337,21 @@ img{ max-width:100%; display:block; }
   padding:56px 0;
 }
 
-/* ---- 特別クーポン日程 見出し(超大きく・中央・イベント感) ---- */
-.gb-sched-head{ text-align:center; margin:0 0 30px; }
+/* ---- 見出し(超大きく・中央・イベント感) ---- */
+.gb-sched-head{ text-align:center; margin:0 0 28px; }
 .gb-sched-over{
-  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
-  font-size:12.5px;
-  font-weight:600;
-  letter-spacing:.22em;
-  color:var(--amber-deep);
-  margin:0 0 12px;
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
+  font-size:clamp(15px, 4.4vw, 20px);
+  font-weight:700;
+  letter-spacing:.06em;
+  color:var(--honey);
+  margin:0 0 6px;
 }
 .gb-sched-title{
   font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
   font-weight:900;
-  font-size:clamp(36px, 10vw, 62px);
-  line-height:1.08;
+  font-size:clamp(44px, 14vw, 78px);
+  line-height:1.04;
   letter-spacing:.02em;
   color:var(--amber-deep);
   margin:0;
@@ -409,141 +409,133 @@ img{ max-width:100%; display:block; }
 .fc-tile .face.back{ transform:rotateX(180deg); }
 .fc-label{ font-size:12px; letter-spacing:.04em; color:var(--honey-mid); font-weight:700; }
 
-/* ---- クーポンチケット(画像なし・CSSのみ) ---- */
-.gb-tickets{ display:flex; flex-direction:column; gap:18px; }
-.gb-ticket{
-  --notch:#f6ead4;                 /* = セクション地色。ミシン目の穴 */
-  position:relative;
+/* ---- カレンダー(日付ごとに別ページへ飛ぶ一覧) ---- */
+.gb-cal-month{
+  text-align:center;
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-weight:600;
+  font-size:14px;
+  letter-spacing:.24em;
+  color:var(--amber-deep);
+  margin:0 0 12px;
+}
+.gb-cal-list{ display:flex; flex-direction:column; gap:12px; }
+
+.gb-cal-row{
   display:grid;
-  grid-template-columns:92px 1fr;
+  grid-template-columns:64px 1fr;
+  grid-template-areas:
+    "date main"
+    "go   go";
+  gap:6px 13px;
+  align-items:start;
   text-decoration:none;
   color:var(--ink);
   background:#fff;
+  border:1px solid var(--gold-soft);
   border-radius:12px;
-  box-shadow:0 16px 36px -22px rgba(95,54,16,.55);
-  overflow:hidden;
-  transition:transform .16s ease, box-shadow .16s ease;
+  padding:13px;
+  box-shadow:0 10px 26px -18px rgba(95,54,16,.45);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
-.gb-ticket:hover{ transform:translateY(-2px); box-shadow:0 22px 44px -22px rgba(95,54,16,.6); }
-.gb-ticket:active{ transform:translateY(0); }
+.gb-cal-row:hover{
+  transform:translateY(-2px);
+  border-color:var(--honey);
+  box-shadow:0 18px 36px -18px rgba(224,78,0,.45);
+}
+.gb-cal-row:active{ transform:translateY(0); }
 
-.gb-ticket-stub{
+/* カレンダーの日付(めくり式カレンダー風) */
+.gb-cal-date{
+  grid-area:date;
   display:flex;
   flex-direction:column;
-  align-items:center;
-  justify-content:center;
   text-align:center;
-  padding:20px 6px;
-  background:linear-gradient(165deg,var(--honey-mid),var(--honey));
-  color:#fff;
-  line-height:1.12;
+  border:1.5px solid var(--gold-soft);
+  border-radius:9px;
+  overflow:hidden;
+  line-height:1;
 }
-.gb-ticket-stub .big{
+.gb-cal-date .m{
+  background:var(--honey);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+  padding:3px 0;
+}
+.gb-cal-date .d{
   font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
   font-weight:600;
-  font-size:30px;
-  letter-spacing:.01em;
+  font-size:28px;
+  color:var(--amber-deep);
+  padding:6px 2px 2px;
 }
-.gb-ticket-stub .sub{
+.gb-cal-date.is-range .d{ font-size:16px; padding:9px 2px 4px; letter-spacing:-.01em; }
+.gb-cal-date .w{
+  font-size:10px;
+  font-weight:700;
+  color:var(--ink-soft);
+  padding:0 0 5px;
+}
+
+.gb-cal-main{ grid-area:main; display:flex; flex-direction:column; gap:3px; padding-top:1px; }
+.gb-cal-badge{
+  align-self:flex-start;
   font-size:11px;
   font-weight:700;
-  letter-spacing:.16em;
-  margin-top:5px;
+  letter-spacing:.04em;
+  color:#fff;
+  background:var(--amber-deep);
+  padding:3px 9px;
+  border-radius:3px;
 }
-.gb-ticket-stub.is-ja .big{
+.gb-cal-name{
   font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
   font-weight:700;
-  font-size:18px;
-  letter-spacing:.05em;
+  font-size:16px;
+  line-height:1.4;
+  color:var(--ink);
+  margin-top:2px;
 }
-
-/* ミシン目(穴＋破線) */
-.gb-ticket::before,
-.gb-ticket::after{
-  content:"";
-  position:absolute;
-  left:85px;
-  width:14px; height:14px;
-  border-radius:50%;
-  background:var(--notch);
-}
-.gb-ticket::before{ top:-8px; }
-.gb-ticket::after{ bottom:-8px; }
-
-.gb-ticket-body{
-  padding:16px 20px 17px;
-  border-left:2px dashed var(--gold-soft);
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-.gb-ticket-mark{
-  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
-  font-size:11px;
-  font-weight:600;
-  letter-spacing:.34em;
-  text-transform:uppercase;
-  color:var(--honey);
-}
-/* 日付・時間を主役に(大きく) */
-.gb-ticket-when{
-  display:flex;
-  flex-direction:column;
-  gap:1px;
-  margin:3px 0 5px;
-}
-.gb-ticket-when .wdate{
+.gb-cal-time{
   font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
   font-weight:600;
-  font-size:27px;
-  line-height:1.1;
-  letter-spacing:.005em;
-  color:var(--amber-deep);
-  word-break:keep-all;
-}
-.gb-ticket-when .wtime{
-  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
-  font-weight:600;
-  font-size:15.5px;
+  font-size:15px;
   letter-spacing:.02em;
   color:var(--honey);
-  word-break:keep-all;
 }
-.gb-ticket-name{
-  font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
-  font-size:15px;
-  font-weight:700;
-  line-height:1.5;
-  color:var(--ink);
-}
-.gb-ticket-meta{
-  font-size:12.5px;
-  color:var(--ink-soft);
-  line-height:1.6;
-  word-break:keep-all;
-  overflow-wrap:anywhere;
-}
-.gb-ticket-cta{
-  margin-top:7px;
-  font-size:14px;
-  font-weight:700;
-  color:var(--amber-deep);
-  display:inline-flex;
+.gb-cal-note{ font-size:12px; color:var(--ink-soft); line-height:1.55; }
+
+/* 「ページへ飛ぶ」ボタン(はっきりしたCTA) */
+.gb-cal-go{
+  grid-area:go;
+  display:flex;
   align-items:center;
-  gap:.4em;
+  justify-content:center;
+  gap:.5em;
+  margin-top:9px;
+  padding:12px 16px;
+  background:var(--honey);
+  color:#fff;
+  font-weight:700;
+  font-size:14px;
+  border-radius:7px;
   white-space:nowrap;
 }
-.gb-ticket-cta::after{
-  content:"";
-  width:6px; height:6px;
+.gb-cal-go .arw{
+  width:7px; height:7px;
   border-top:2px solid currentColor;
   border-right:2px solid currentColor;
   transform:rotate(45deg);
   flex:none;
+  transition:transform .15s ease;
 }
-.gb-ticket.is-pending{ pointer-events:none; box-shadow:0 10px 24px -20px rgba(95,54,16,.5); }
-.gb-ticket.is-pending .gb-ticket-stub{ opacity:.85; }
-.gb-ticket.is-pending .gb-ticket-cta{ color:var(--ink-soft); }
+.gb-cal-row:hover .gb-cal-go{ background:#e04e00; }
+.gb-cal-row:hover .gb-cal-go .arw{ transform:rotate(45deg) translate(2px,-2px); }
+
+.gb-cal-row.is-pending{ pointer-events:none; box-shadow:0 8px 20px -16px rgba(95,54,16,.4); }
+.gb-cal-row.is-pending .gb-cal-go{ background:var(--gold-soft); color:var(--ink-soft); }
 
 /* ==========================================================================
    4. ここまでの歩み(タイムスリップ)
@@ -803,14 +795,18 @@ body{ padding-bottom:74px; }
   .gb-fuku-btns{ flex-direction:row; }
   .gb-fuku-btns .gb-btn{ width:auto; flex:1; }
 
-  .gb-ticket{ grid-template-columns:132px 1fr; }
-  .gb-ticket::before, .gb-ticket::after{ left:125px; }
-  .gb-ticket-stub .big{ font-size:34px; }
-  .gb-ticket-stub.is-ja .big{ font-size:21px; }
-  .gb-ticket-when .wdate{ font-size:33px; }
-  .gb-ticket-when .wtime{ font-size:17px; }
-  .gb-ticket-name{ font-size:16px; }
-  .gb-ticket-body{ padding:20px 26px; }
+  .gb-cal-row{
+    grid-template-columns:88px 1fr auto;
+    grid-template-areas:"date main go";
+    align-items:center;
+    gap:18px;
+    padding:16px 18px;
+  }
+  .gb-cal-date .d{ font-size:32px; }
+  .gb-cal-date.is-range .d{ font-size:18px; }
+  .gb-cal-name{ font-size:17px; }
+  .gb-cal-time{ font-size:16px; }
+  .gb-cal-go{ margin-top:0; padding:13px 22px; font-size:14.5px; }
 
   /* 歩み:章を左右交互に */
   .gb-story .gb-inner{ max-width:620px; margin:0 auto; }
@@ -924,9 +920,9 @@ body{ padding-bottom:74px; }
   <section class="gb-schedule" id="schedule">
     <div class="gb-inner">
       <div class="gb-sched-head">
-        <p class="gb-sched-over">楽天スーパーSALE × 出店20周年企画</p>
-        <h2 class="gb-sched-title">特別クーポン日程</h2>
-        <p class="gb-sched-lead">スーパーSALE期間中は、時間帯ごとに使えるクーポンが切り替わります。</p>
+        <p class="gb-sched-over">楽天スーパーSALE</p>
+        <h2 class="gb-sched-title">カレンダー</h2>
+        <p class="gb-sched-lead">日付をタップすると、その日程のクーポンページへ移動します。</p>
       </div>
 
       <div id="mainCountdown">
@@ -963,71 +959,63 @@ body{ padding-bottom:74px; }
         </div>
       </div>
 
-      <div class="gb-tickets">
+      <p class="gb-cal-month">SEPTEMBER 2026</p>
+      <div class="gb-cal-list">
 
-        <a href="#" class="gb-ticket" data-coupon="flash4h">
-          <span class="gb-ticket-stub is-ja">
-            <span class="big">4時間<br>限定</span>
+        <a href="#" class="gb-cal-row" data-coupon="flash4h">
+          <span class="gb-cal-date">
+            <span class="m">9月</span><span class="d">4</span><span class="w">金</span>
           </span>
-          <span class="gb-ticket-body">
-            <span class="gb-ticket-mark">Start Coupon</span>
-            <span class="gb-ticket-when">
-              <span class="wdate">9/4</span>
-              <span class="wtime">20:00 – 23:59</span>
-            </span>
-            <span class="gb-ticket-name">スペシャルクーポン／種類いろいろ・一覧ページへ</span>
-            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          <span class="gb-cal-main">
+            <span class="gb-cal-badge">4時間限定</span>
+            <span class="gb-cal-name">スペシャルクーポン</span>
+            <span class="gb-cal-time">20:00 – 23:59</span>
+            <span class="gb-cal-note">種類いろいろ・クーポン一覧ページへ</span>
           </span>
+          <span class="gb-cal-go"><span data-cta>クーポンページを見る</span><span class="arw" aria-hidden="true"></span></span>
         </a>
 
-        <a href="#" class="gb-ticket" data-coupon="time24h">
-          <span class="gb-ticket-stub is-ja">
-            <span class="big">24時間<br>限定</span>
+        <a href="#" class="gb-cal-row" data-coupon="time24h">
+          <span class="gb-cal-date">
+            <span class="m">9月</span><span class="d">5</span><span class="w">土</span>
           </span>
-          <span class="gb-ticket-body">
-            <span class="gb-ticket-mark">Coupon</span>
-            <span class="gb-ticket-when">
-              <span class="wdate">9/5</span>
-              <span class="wtime">0:00 – 23:59</span>
-            </span>
-            <span class="gb-ticket-name">タイムセールクーポン／5の付く日</span>
-            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          <span class="gb-cal-main">
+            <span class="gb-cal-badge">24時間限定</span>
+            <span class="gb-cal-name">タイムセールクーポン</span>
+            <span class="gb-cal-time">0:00 – 23:59</span>
+            <span class="gb-cal-note">5の付く日の、とびきりタイムセール</span>
           </span>
+          <span class="gb-cal-go"><span data-cta>クーポンページを見る</span><span class="arw" aria-hidden="true"></span></span>
         </a>
 
-        <a href="#" class="gb-ticket" data-coupon="regular">
-          <span class="gb-ticket-stub">
-            <span class="big">SALE</span>
-            <span class="sub">9/6 – 11</span>
+        <a href="#" class="gb-cal-row" data-coupon="regular">
+          <span class="gb-cal-date is-range">
+            <span class="m">9月</span><span class="d">6–11</span><span class="w">日〜金</span>
           </span>
-          <span class="gb-ticket-body">
-            <span class="gb-ticket-mark">Coupon</span>
-            <span class="gb-ticket-when">
-              <span class="wdate">9/6 – 9/11</span>
-              <span class="wtime">9/6 0:00 → 9/11 1:59</span>
-            </span>
-            <span class="gb-ticket-name">スーパーSALEクーポン／期間中いつでも</span>
-            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          <span class="gb-cal-main">
+            <span class="gb-cal-badge">SALE期間</span>
+            <span class="gb-cal-name">スーパーSALEクーポン</span>
+            <span class="gb-cal-time">9/6 0:00 → 9/11 1:59</span>
+            <span class="gb-cal-note">スーパーSALE期間中いつでも</span>
           </span>
+          <span class="gb-cal-go"><span data-cta>クーポンページを見る</span><span class="arw" aria-hidden="true"></span></span>
         </a>
 
-        <a href="#" class="gb-ticket" data-coupon="time30h">
-          <span class="gb-ticket-stub is-ja">
-            <span class="big">30時間<br>限定</span>
+        <a href="#" class="gb-cal-row" data-coupon="time30h">
+          <span class="gb-cal-date is-range">
+            <span class="m">9月</span><span class="d">9–11</span><span class="w">水〜金</span>
           </span>
-          <span class="gb-ticket-body">
-            <span class="gb-ticket-mark">Coupon</span>
-            <span class="gb-ticket-when">
-              <span class="wdate">9/9 – 9/11</span>
-              <span class="wtime">9/9 20:00 → 9/11 1:59</span>
-            </span>
-            <span class="gb-ticket-name">ラストスパートクーポン／SALE最後の30時間</span>
-            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
+          <span class="gb-cal-main">
+            <span class="gb-cal-badge">30時間限定</span>
+            <span class="gb-cal-name">ラストスパートクーポン</span>
+            <span class="gb-cal-time">9/9 20:00 → 9/11 1:59</span>
+            <span class="gb-cal-note">スーパーSALE最後の30時間</span>
           </span>
+          <span class="gb-cal-go"><span data-cta>クーポンページを見る</span><span class="arw" aria-hidden="true"></span></span>
         </a>
 
       </div>
-      <p class="gb-note">※各クーポンの獲得URL・利用条件・発行数は、配布開始後に楽天市場のクーポンページでご確認ください。日程は変更となる場合があります。</p>
+      <p class="gb-note">※各クーポンの利用条件・発行数・対象商品は、リンク先の楽天市場店の特集ページをご確認ください。日程は変更となる場合があります。</p>
     </div>
   </section>
   <!-- ▲▲▲ 楽天スーパーSALE 期間中のみ表示するセクション ここまで ▲▲▲ -->
@@ -1197,7 +1185,7 @@ body{ padding-bottom:74px; }
       <div class="gb-final-btns">
         <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">20周年福袋セットを見る</a>
         <!-- ▼スーパーSALE終了後、日程セクションを削除する場合はこのボタンも削除 -->
-        <a href="#schedule" class="gb-btn gb-btn--ghost">特別クーポン日程を見る</a>
+        <a href="#schedule" class="gb-btn gb-btn--ghost">スーパーSALEカレンダーを見る</a>
       </div>
     </div>
   </section>
@@ -1218,7 +1206,7 @@ body{ padding-bottom:74px; }
 <div class="gb-sticky">
   <a href="https://item.rakuten.co.jp/manuka/gb10and15/" class="gb-btn gb-btn--solid">福袋を見る</a>
   <!-- ▼スーパーSALE終了後、日程セクションを削除する場合はこのリンクも削除 -->
-  <a href="#schedule" class="gb-btn gb-btn--line">クーポン日程</a>
+  <a href="#schedule" class="gb-btn gb-btn--line">SALEカレンダー</a>
 </div>
 
 <script>
