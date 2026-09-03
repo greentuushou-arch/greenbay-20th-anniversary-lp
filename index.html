@@ -965,22 +965,6 @@ body{ padding-bottom:74px; }
 
       <div class="gb-tickets">
 
-        <a href="#" class="gb-ticket" data-coupon="fukubukuro">
-          <span class="gb-ticket-stub">
-            <span class="big">50%</span>
-            <span class="sub">OFF</span>
-          </span>
-          <span class="gb-ticket-body">
-            <span class="gb-ticket-mark">Coupon</span>
-            <span class="gb-ticket-when">
-              <span class="wdate">9月 会期中</span>
-              <span class="wtime">ずっと使えます</span>
-            </span>
-            <span class="gb-ticket-name">開店20周年 福袋セット／食べ比べセットが対象</span>
-            <span class="gb-ticket-cta" data-cta>獲得はこちらから</span>
-          </span>
-        </a>
-
         <a href="#" class="gb-ticket" data-coupon="flash4h">
           <span class="gb-ticket-stub is-ja">
             <span class="big">4時間<br>限定</span>
@@ -1244,11 +1228,11 @@ body{ padding-bottom:74px; }
      空文字 "" のあいだは、対象ボタン/リンクが「準備中」表示になります。
    ========================================================================== */
 var COUPONS = {
-  fukubukuro : "",   /* 開店20周年 福袋セット 50%OFFクーポン(9月 会期中) */
-  flash4h    : "",   /* 9/4 20:00-23:59  4時間限定スペシャルクーポン */
-  time24h    : "",   /* 9/5 00:00-23:59  24時間限定タイムセールクーポン */
-  regular    : "",   /* 9/6-9/11         通常クーポン */
-  time30h    : ""    /* 9/9 20:00-9/11 1:59  30時間限定タイムセールクーポン */
+  fukubukuro : "",   /* 福袋セクションの「クーポンはこちら」ボタン用。未定 */
+  flash4h    : "https://www.rakuten.co.jp/manuka/contents/marathon_4h/",        /* 9/4 4時間限定 */
+  time24h    : "https://www.rakuten.co.jp/manuka/contents/20260730/",           /* 9/5 24時間限定 */
+  regular    : "https://www.rakuten.co.jp/manuka/contents/marathon20260511/",   /* 9/6-9/11 */
+  time30h    : "https://www.rakuten.co.jp/manuka/contents/buttobase20260616/"   /* 9/9 30時間限定 */
 };
 
 (function(){
