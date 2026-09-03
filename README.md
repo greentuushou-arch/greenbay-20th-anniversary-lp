@@ -1,63 +1,78 @@
 # マヌカハニー専門グリーンベイ｜楽天出店20周年記念祭 特集ページ
 
-`index.html` 1ファイル完結（CSS / JS 内包）。画像は `images/` 配下、すべて相対パス。
+`index.html` 1ファイル完結（CSS / JS すべて内包）。画像は `images/` 配下（相対パス）。
 どのディレクトリに置いても動きます。楽天GOLD・商品ページ埋め込みのどちらでも使えます。
 
-## 編集する場所
+- Webフォント（Google Fonts）を読み込みます（Zen Kaku Gothic New / Kaisei Opti / Josefin Sans / Zen Maru Gothic）。
+- 「グリーンベイキッチン」のレシピカードのサムネイルは、楽天の画像CDN（`tshop.r10s.jp`）を直接参照しています。
 
-### 1. クーポンの獲得URL（配布開始後に差し込み）
+---
 
-`index.html` 下部の `<script>` 内、`COUPONS` を書き換えます。
-空文字 `""` のあいだは、対象のボタン／リンクが自動で「（準備中）」表示になり、押せません。
+## よく編集する場所（`index.html`）
+
+### 1. クーポンURL — `<script>` 内の `COUPONS`
+
+現在は下記URLを設定済みです。変わったら書き換えてください。
+空文字 `""` にすると、そのボタンが自動で「（準備中）」表示になり押せなくなります。
 
 ```js
 var COUPONS = {
-  fukubukuro : "",   // 開店20周年 福袋セット 50%OFFクーポン（9月 会期中ずっと）
-  flash4h    : "",   // 9/4 20:00-23:59  4時間限定スペシャルクーポン
-  time24h    : "",   // 9/5 00:00-23:59  24時間限定タイムセールクーポン
-  regular    : "",   // 9/6-9/11         通常クーポン
-  time30h    : ""    // 9/9 20:00-9/11 1:59  30時間限定タイムセールクーポン
+  fukubukuro : "https://coupon.rakuten.co.jp/getCoupon?getkey=TFBLUy1KTE9OLVRHR1EtN0lUWg--&rt=", // 福袋セット 50%OFF
+  flash4h    : "https://www.rakuten.co.jp/manuka/contents/marathon_4h/",       // 9/4 4時間限定
+  time24h    : "https://www.rakuten.co.jp/manuka/contents/20260730/",          // 9/5 24時間限定
+  regular    : "https://www.rakuten.co.jp/manuka/contents/marathon20260511/",  // 9/6–9/11
+  time30h    : "https://www.rakuten.co.jp/manuka/contents/buttobase20260616/"  // 9/9 30時間限定
 };
 ```
 
-`""` を `"https://coupon.rakuten.co.jp/......"` に置き換えるだけです。
+### 2. カウントダウン（パタパタ時計）の日時 — `<script>` 内
 
-### 2. カウントダウンの日時
+```js
+var SALE_START = new Date('2026-09-04T20:00:00+09:00');
+var SALE_END   = new Date('2026-09-11T01:59:00+09:00');
+```
 
-同じく `<script>` 内の `PHASES`。日程が変わったら日時（日本時間）を調整してください。
-`jst(月, 日, 時, 分)` の **月は 0 始まり**（`8` = 9月）です。
+開始前は「開始まであと」、期間中は「終了まであと」、終了後は「終了しました」に自動で切り替わります。
 
-### 2-2. 楽天スーパーSALE 終了後に「特別クーポン日程」を消す
+### 3. 「スーパーSALEカレンダー」ブロックを、SALE終了後に消す
 
-`<section class="gb-schedule">` … `</section>` を丸ごと削除します（前後に
-`▼▼▼ 楽天スーパーSALE 期間中のみ表示 ▼▼▼` のコメントあり）。あわせて、
-`href="#schedule"` のボタン3か所（FV／最後のCTA／スマホ追従バー、いずれも直前に
-削除用コメントを入れています）も削除してください。
+`<section class="gb-schedule" id="schedule">` … `</section>` を丸ごと削除します
+（前後に `▼▼▼ 楽天スーパーSALE 期間中のみ表示 ▼▼▼` のコメントあり）。
+あわせて、`href="#schedule"` のボタン2か所（最後のCTA「スーパーSALEカレンダーを見る」／
+スマホ追従バー「SALEカレンダー」、いずれも直前に削除用コメントあり）も削除してください。
 
-### 3. 写真の差し替え
-
-`index.html` 内の `<!-- ▼差し替え -->` コメントが目印です。
+### 4. 写真の差し替え（`<!-- ▼差し替え -->` が目印。同名で上書きするだけ）
 
 | 場所 | ファイル |
 |---|---|
-| ファーストビュー | `images/hero/product-hero.jpg` |
+| FV看板（全面） | `images/hero/fv-banner.jpg` |
+| FV下の商品写真（光る枠） | `images/hero/product-hero.jpg` |
 | 20周年福袋セット バナー | `images/fukubukuro/banner.jpg` |
-| 歩み（1997〜2026） | `images/story/*.jpg` |
-| リニューアル | `images/renewal/tea.jpg`、`images/renewal/drizzle.jpg` |
+| ここまでの歩み（1997〜2026） | `images/story/*.jpg` |
+| リニューアル（毎日でも飽きずに） | `images/renewal/manuka-jars.jpg` |
+| 歩み2026 の写真 | `images/renewal/drizzle.jpg` |
 | 店長メッセージ | `images/story/apiary.jpg` |
+| 当店人気マヌカハニー | `images/hero/product-hero.jpg`（FV下と同じ画像） |
 
-同じファイル名で上書きすれば差し替え完了です。
+### 5. 「グリーンベイキッチン」のレシピカード
 
-### 4. 専用のファーストビュー画像ができたら
+`<!-- ▼記事が入れ替わったら href / img / タイトルを差し替え -->` の下の
+`<a class="gb-kitchen-card">` を編集。`href`＝記事URL、`img src`＝サムネイルURL、
+`.k-t`＝タイトル。カードを増やす場合は `<a>…</a>` をコピーして追加します。
 
-デザイン済みのFVメインビジュアルを用意する場合は、
-`<section class="gb-hero">` 内の `<div class="gb-hero-visual">` の中身（写真）を画像1枚に置き換えられます。
+### 6. その他リンク
+
+- ヘッダーの店名 → `https://www.rakuten.co.jp/manuka/`（店舗トップ）
+- 「当店人気のマヌカハニーを見る」 → 楽天の検索結果URL（`sid=221827` / `nitem=在庫限り 一掃`）
+- 「20周年福袋セットを見る」 → `https://item.rakuten.co.jp/manuka/gb10and15/`
+
+---
 
 ## 確認
 
-ダブルクリックで `index.html` を開けばそのまま表示されます。
-ローカルサーバーで見る場合は `scripts/serve.ps1` を実行（`http://localhost:8747`）。
+`index.html` をダブルクリックで開けばそのまま表示されます。
+（ローカルサーバーで見る場合は `scripts/serve.ps1` を実行 → `http://localhost:8747`）
 
 ## 納品物
 
-`index.html` と `images/` フォルダ。`scripts/` は開発用のため納品には不要です。
+`index.html` と `images/` フォルダ。`scripts/` は開発用のため不要です。
