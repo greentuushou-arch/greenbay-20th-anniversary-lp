@@ -271,6 +271,9 @@ img{ max-width:100%; display:block; }
   overflow:hidden;
   box-shadow:0 22px 40px -20px rgba(95,54,16,.5);
 }
+.gb-fuku-banner a{ display:block; transition:opacity .15s ease; }
+.gb-fuku-banner a:hover{ opacity:.94; }
+.gb-fuku-banner a.is-pending{ pointer-events:none; }
 .gb-fuku-banner img{ width:100%; height:auto; }
 
 .gb-fuku-body p{ margin:0 0 1.1em; font-size:16px; }
@@ -1016,9 +1019,11 @@ body{ padding-bottom:74px; }
       <h2 class="gb-h2">開店20周年 福袋セット</h2>
 
       <div class="gb-fuku-grid">
-        <!-- ▼差し替え: images/fukubukuro/banner.jpg -->
+        <!-- ▼差し替え: images/fukubukuro/banner.jpg ／ 画像内の「クーポン獲得はこちら」も50%OFFクーポンへリンク -->
         <div class="gb-fuku-banner">
-          <img src="images/fukubukuro/banner.jpg" alt="ありがとう 楽天出店20周年記念祭 UMF10+ & UMF15+ 食べ比べセット 50%OFFクーポン">
+          <a href="#" data-coupon="fukubukuro" aria-label="開店20周年 福袋セット 50%OFFクーポンを獲得する">
+            <img src="images/fukubukuro/banner.jpg" alt="ありがとう 楽天出店20周年記念祭 UMF10+ & UMF15+ 食べ比べセット 50%OFFクーポン獲得はこちら">
+          </a>
         </div>
 
         <div class="gb-fuku-body">
@@ -1456,17 +1461,19 @@ var COUPONS = {
     var url = COUPONS[key];
     /* ラベルを差し替える要素: チケットは中の [data-cta]、通常ボタンは自身 */
     var cta = el.querySelector("[data-cta]") || el;
-    if (!cta.getAttribute("data-label")){ cta.setAttribute("data-label", cta.textContent.trim()); }
+    /* 中に要素(画像など)を含むリンクはテキストを書き換えない */
+    var swapText = !cta.children.length;
+    if (swapText && !cta.getAttribute("data-label")){ cta.setAttribute("data-label", cta.textContent.trim()); }
     if (url){
       el.setAttribute("href", url);
       el.classList.remove("is-pending");
       el.removeAttribute("aria-disabled");
-      cta.textContent = cta.getAttribute("data-label");
+      if (swapText) cta.textContent = cta.getAttribute("data-label");
     } else {
       el.setAttribute("href", "#schedule");
       el.classList.add("is-pending");
       el.setAttribute("aria-disabled", "true");
-      cta.textContent = cta.getAttribute("data-label") + "（準備中）";
+      if (swapText) cta.textContent = cta.getAttribute("data-label") + "（準備中）";
     }
   }
 })();
