@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Kaisei+Opti:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Kaisei+Opti:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 /* ==========================================================================
@@ -756,6 +756,94 @@ img{ max-width:100%; display:block; }
 .gb-lineup-note{ font-size:12.5px; color:var(--ink-soft); margin:14px 0 0; }
 
 /* ==========================================================================
+   6c. グリーンベイキッチン(レシピの読み物・かわいらしく)
+   ========================================================================== */
+.gb-kitchen{ background:#fff3d4; padding:52px 0 46px; }
+.gb-kitchen-head{ text-align:center; margin:0 0 22px; }
+.gb-kitchen-over{
+  font-family:"Josefin Sans","Zen Maru Gothic",sans-serif;
+  font-size:11.5px; font-weight:600; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--honey); margin:0 0 8px;
+}
+.gb-kitchen-title{
+  font-family:"Zen Maru Gothic","Zen Kaku Gothic New",sans-serif;
+  font-weight:700;
+  font-size:clamp(24px, 6.6vw, 34px);
+  line-height:1.3;
+  color:var(--amber-deep);
+  margin:0;
+}
+.gb-kitchen-title .dot{ color:var(--honey); }
+.gb-kitchen-sub{
+  font-family:"Zen Maru Gothic","Zen Kaku Gothic New",sans-serif;
+  font-weight:700;
+  font-size:15px;
+  color:var(--ink);
+  margin:8px 0 0;
+}
+.gb-kitchen-lead{
+  font-size:13.5px; color:var(--ink-soft); line-height:1.75;
+  margin:6px auto 0; max-width:24em;
+}
+
+.gb-kitchen-shelf{
+  display:flex;
+  gap:13px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity;
+  padding:4px 2px 12px;
+}
+.gb-kitchen-shelf::-webkit-scrollbar{ height:6px; }
+.gb-kitchen-shelf::-webkit-scrollbar-thumb{ background:var(--gold-soft); border-radius:3px; }
+
+.gb-kitchen-card{
+  flex:0 0 158px;
+  scroll-snap-align:start;
+  display:flex; flex-direction:column;
+  background:#fff;
+  border:2px solid var(--honey);
+  border-radius:16px;
+  overflow:hidden;
+  text-decoration:none;
+  color:var(--ink);
+  box-shadow:0 10px 20px -14px rgba(95,54,16,.45);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.gb-kitchen-card:hover{ transform:translateY(-3px); box-shadow:0 16px 28px -14px rgba(224,78,0,.4); }
+.gb-kitchen-card img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:#fbe7c4; }
+.gb-kitchen-card .k-body{ padding:9px 11px 12px; display:flex; flex-direction:column; gap:6px; flex:1; }
+.gb-kitchen-card .k-no{
+  font-family:"Josefin Sans","Zen Maru Gothic",sans-serif;
+  font-size:11px; font-weight:600; letter-spacing:.12em; color:var(--honey);
+}
+.gb-kitchen-card .k-t{
+  font-family:"Zen Maru Gothic","Zen Kaku Gothic New",sans-serif;
+  font-weight:500;
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--ink);
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+.gb-kitchen-card .k-go{
+  margin-top:auto;
+  display:inline-flex; align-items:center; gap:.3em;
+  font-family:"Zen Maru Gothic","Zen Kaku Gothic New",sans-serif;
+  font-size:11.5px; font-weight:700; color:var(--honey);
+}
+.gb-kitchen-card .k-go::after{
+  content:""; width:5px; height:5px;
+  border-top:2px solid currentColor; border-right:2px solid currentColor;
+  transform:rotate(45deg); flex:none;
+}
+.gb-kitchen-more{
+  display:block; text-align:center; margin:6px 0 0;
+  font-family:"Zen Maru Gothic","Zen Kaku Gothic New",sans-serif;
+  font-size:12.5px; font-weight:700; color:var(--amber-deep);
+  text-decoration:none; border-bottom:1px dotted var(--gold); padding-bottom:2px;
+}
+
+/* ==========================================================================
    7. 最後のCTA
    ========================================================================== */
 .gb-final{
@@ -1229,12 +1317,12 @@ body{ padding-bottom:74px; }
     <div class="gb-inner">
       <div class="gb-lineup-grid">
         <div class="gb-lineup-photo">
-          <img src="images/hero/product-hero.jpg" alt="GREEN BAY PREMIUM マヌカハニー(赤ラベルの定番シリーズ)">
+          <img src="images/hero/product-hero.jpg" alt="GREEN BAY PREMIUM マヌカハニー(定番シリーズ)">
         </div>
         <div class="gb-lineup-body">
           <p class="gb-kicker is-ja">定番の人気シリーズ</p>
           <h2 class="gb-h2">当店人気マヌカハニーをチェック</h2>
-          <p>グリーンベイの定番は、赤ラベルの <b>GREEN BAY PREMIUM</b>。UMF（数字）が小さいほどマイルドで毎日続けやすく、大きいほど濃厚です。まずは小さい数字から、無理なく続けられる一本をどうぞ。</p>
+          <p>グリーンベイの定番は <b>GREEN BAY PREMIUM</b>。UMF（数字）が小さいほどマイルドで毎日続けやすく、大きいほど濃厚です。まずは小さい数字から、無理なく続けられる一本をどうぞ。</p>
 
           <div class="gb-lineup-scale" aria-hidden="true">
             <span class="g">UMF5+</span><span class="arw"></span>
@@ -1248,6 +1336,70 @@ body{ padding-bottom:74px; }
           <p class="gb-lineup-note">※数字の小さい順に並んだ、在庫限りの定番マヌカハニー一覧が開きます。</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 6c. グリーンベイキッチン(レシピの読み物) -->
+  <section class="gb-kitchen">
+    <div class="gb-inner">
+      <div class="gb-kitchen-head">
+        <p class="gb-kitchen-over">Green Bay Kitchen</p>
+        <h2 class="gb-kitchen-title">グリーンベイキッチン<span class="dot">！</span></h2>
+        <p class="gb-kitchen-sub">マヌカハニーのある暮らし。</p>
+        <p class="gb-kitchen-lead">マヌカハニーを使ったレシピをご紹介しております。</p>
+      </div>
+
+      <!-- ▼記事が入れ替わったら href / img / タイトルを差し替え -->
+      <div class="gb-kitchen-shelf">
+
+        <a href="https://www.rakuten.co.jp/manuka/contents/manuka-recipe/japan/miyagi-zunda/" class="gb-kitchen-card">
+          <img src="https://tshop.r10s.jp/manuka/cabinet/contents-n/column/miyagi.jpg" alt="宮城名物・ずんだ餡をマヌカハニーで作ってみました" loading="lazy">
+          <span class="k-body">
+            <span class="k-no">RECIPE 01</span>
+            <span class="k-t">宮城名物・ずんだ餡をマヌカハニーで作ってみました【宮城県編】</span>
+            <span class="k-go">レシピを読む</span>
+          </span>
+        </a>
+
+        <a href="https://www.rakuten.co.jp/manuka/contents/manuka-recipe/japan/saitama-gyoda-furai/" class="gb-kitchen-card">
+          <img src="https://tshop.r10s.jp/manuka/cabinet/contents-n/column/saitama-gyoda.jpg" alt="埼玉名物・行田フライの甘辛ソースをマヌカハニーで作ってみました" loading="lazy">
+          <span class="k-body">
+            <span class="k-no">RECIPE 02</span>
+            <span class="k-t">埼玉名物・行田フライの甘辛ソースをマヌカハニーで作ってみました【埼玉県編】</span>
+            <span class="k-go">レシピを読む</span>
+          </span>
+        </a>
+
+        <a href="https://www.rakuten.co.jp/manuka/contents/manuka-recipe/japan/gunma-yakimanju/" class="gb-kitchen-card">
+          <img src="https://tshop.r10s.jp/manuka/cabinet/contents-n/column/gunma.jpg" alt="群馬名物・焼きまんじゅうの味噌だれをマヌカハニーで作ってみました" loading="lazy">
+          <span class="k-body">
+            <span class="k-no">RECIPE 03</span>
+            <span class="k-t">群馬名物・焼きまんじゅうの味噌だれをマヌカハニーで作ってみました【群馬県編】</span>
+            <span class="k-go">レシピを読む</span>
+          </span>
+        </a>
+
+        <a href="https://www.rakuten.co.jp/manuka/contents/manuka-recipe-lemon/" class="gb-kitchen-card">
+          <img src="https://tshop.r10s.jp/manuka/cabinet/contents-n/column/manuka-recipe-lemona.jpg" alt="夏のマヌカハニーレモン漬けを作ってみました" loading="lazy">
+          <span class="k-body">
+            <span class="k-no">RECIPE 04</span>
+            <span class="k-t">すっきり爽やか、冷凍アレンジも。夏のマヌカハニーレモン漬けを作ってみました</span>
+            <span class="k-go">レシピを読む</span>
+          </span>
+        </a>
+
+        <a href="https://www.rakuten.co.jp/manuka/contents/manuka-recipe-01/" class="gb-kitchen-card">
+          <img src="https://tshop.r10s.jp/manuka/cabinet/contents-n/column/imgrc0114255488.jpg" alt="マヌカハニードレッシングを作ってみました" loading="lazy">
+          <span class="k-body">
+            <span class="k-no">RECIPE 05</span>
+            <span class="k-t">夏野菜が止まらない。マヌカハニードレッシングを作ってみました</span>
+            <span class="k-go">レシピを読む</span>
+          </span>
+        </a>
+
+      </div>
+
+      <a href="https://www.rakuten.co.jp/manuka/contents/topicslist/" class="gb-kitchen-more">トピックス一覧を見る</a>
     </div>
   </section>
 
