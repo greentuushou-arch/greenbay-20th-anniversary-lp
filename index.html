@@ -710,6 +710,52 @@ img{ max-width:100%; display:block; }
 }
 
 /* ==========================================================================
+   6b. 当店人気マヌカハニー(定番シリーズ)
+   ========================================================================== */
+.gb-lineup{ background:var(--honey-pale); padding:56px 0; }
+.gb-lineup-grid{ display:block; }
+.gb-lineup-photo{
+  border-radius:8px;
+  overflow:hidden;
+  margin:0 0 24px;
+  box-shadow:0 20px 40px -22px rgba(95,54,16,.5);
+}
+.gb-lineup-photo img{ width:100%; height:auto; }
+.gb-lineup-body p{ font-size:16px; margin:0 0 18px; }
+.gb-lineup-body p b{ color:var(--amber-deep); }
+.gb-lineup-scale{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:0 0 24px;
+}
+.gb-lineup-scale .g{
+  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
+  font-weight:700;
+  font-size:15px;
+  color:#fff;
+  background:var(--honey);
+  padding:5px 11px;
+  border-radius:4px;
+}
+.gb-lineup-scale .arw{
+  width:7px; height:7px;
+  border-top:2px solid var(--gold);
+  border-right:2px solid var(--gold);
+  transform:rotate(45deg);
+  flex:none;
+}
+.gb-lineup-scale .more{
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--ink-soft);
+  margin-left:4px;
+}
+.gb-lineup-btn{ width:100%; }
+.gb-lineup-note{ font-size:12.5px; color:var(--ink-soft); margin:14px 0 0; }
+
+/* ==========================================================================
    7. 最後のCTA
    ========================================================================== */
 .gb-final{
@@ -815,13 +861,16 @@ body{ padding-bottom:74px; }
   .gb-tl-desc{ font-size:15.5px; }
   .gb-message-body p{ font-size:16.5px; }
 
-  .gb-renewal-grid{
+  .gb-renewal-grid,
+  .gb-lineup-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:40px;
     align-items:center;
   }
   .gb-renewal-photo{ margin:0; }
+  .gb-lineup-photo{ margin:0; }
+  .gb-lineup-btn{ width:auto; }
 
   .gb-message .gb-inner{ max-width:640px; margin:0 auto; }
   /* PCでは写真を左に回り込ませ、本文が写真の下まで回り込むようにする */
@@ -1170,6 +1219,33 @@ body{ padding-bottom:74px; }
             マヌカハニー専門グリーンベイ公式店<br>
             <b>店長　堀井 慎一郎</b>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 6b. 当店人気マヌカハニー(定番シリーズ) -->
+  <section class="gb-lineup">
+    <div class="gb-inner">
+      <div class="gb-lineup-grid">
+        <div class="gb-lineup-photo">
+          <img src="images/hero/product-hero.jpg" alt="GREEN BAY PREMIUM マヌカハニー(赤ラベルの定番シリーズ)">
+        </div>
+        <div class="gb-lineup-body">
+          <p class="gb-kicker is-ja">定番の人気シリーズ</p>
+          <h2 class="gb-h2">当店人気マヌカハニーをチェック</h2>
+          <p>グリーンベイの定番は、赤ラベルの <b>GREEN BAY PREMIUM</b>。UMF（数字）が小さいほどマイルドで毎日続けやすく、大きいほど濃厚です。まずは小さい数字から、無理なく続けられる一本をどうぞ。</p>
+
+          <div class="gb-lineup-scale" aria-hidden="true">
+            <span class="g">UMF5+</span><span class="arw"></span>
+            <span class="g">10+</span><span class="arw"></span>
+            <span class="g">15+</span><span class="arw"></span>
+            <span class="g">20+</span><span class="arw"></span>
+            <span class="more">数字が大きいほど濃厚</span>
+          </div>
+
+          <a href="https://search.rakuten.co.jp/search/mall/?filter=nndd&nitem=%E5%9C%A8%E5%BA%AB%E9%99%90%E3%82%8A%E3%80%80%E4%B8%80%E6%8E%83&sid=221827" class="gb-btn gb-btn--solid gb-lineup-btn">当店人気のマヌカハニーを見る</a>
+          <p class="gb-lineup-note">※数字の小さい順に並んだ、在庫限りの定番マヌカハニー一覧が開きます。</p>
         </div>
       </div>
     </div>
