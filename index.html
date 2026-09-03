@@ -377,12 +377,12 @@ img{ max-width:100%; display:block; }
 .gb-cd-bubble{
   position:relative;
   background:var(--amber-deep); color:#fff;
-  font-weight:700; font-size:13.5px; letter-spacing:.04em;
-  padding:10px 22px; border-radius:999px; margin-bottom:16px;
+  font-weight:700; font-size:clamp(15px, 4.4vw, 18px); letter-spacing:.04em;
+  padding:12px 26px; border-radius:999px; margin-bottom:16px;
 }
 .gb-cd-bubble::after{
-  content:""; position:absolute; left:50%; bottom:-9px; transform:translateX(-50%);
-  border-width:10px 8px 0 8px; border-style:solid;
+  content:""; position:absolute; left:50%; bottom:-10px; transform:translateX(-50%);
+  border-width:11px 9px 0 9px; border-style:solid;
   border-color:var(--amber-deep) transparent transparent transparent;
 }
 .flipclock{
