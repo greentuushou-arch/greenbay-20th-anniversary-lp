@@ -341,11 +341,11 @@ img{ max-width:100%; display:block; }
 .gb-sched-head{ text-align:center; margin:0 0 28px; }
 .gb-sched-over{
   font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
-  font-size:clamp(15px, 4.4vw, 20px);
-  font-weight:700;
-  letter-spacing:.06em;
+  font-size:clamp(23px, 6.4vw, 36px);
+  font-weight:800;
+  letter-spacing:.03em;
   color:var(--honey);
-  margin:0 0 6px;
+  margin:0 0 2px;
 }
 .gb-sched-title{
   font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
@@ -423,25 +423,24 @@ img{ max-width:100%; display:block; }
 
 .gb-cal-row{
   display:grid;
-  grid-template-columns:64px 1fr;
+  grid-template-columns:66px 1fr;
   grid-template-areas:
     "date main"
     "go   go";
-  gap:6px 13px;
+  gap:8px 14px;
   align-items:start;
   text-decoration:none;
   color:var(--ink);
-  background:#fff;
-  border:1px solid var(--gold-soft);
-  border-radius:12px;
-  padding:13px;
-  box-shadow:0 10px 26px -18px rgba(95,54,16,.45);
-  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  background:var(--bg-side);            /* = 背景両脇の黄色 */
+  border:2px solid var(--amber-deep);
+  border-radius:14px;
+  padding:15px;
+  box-shadow:0 12px 26px -16px rgba(95,54,16,.5);
+  transition:transform .15s ease, box-shadow .15s ease;
 }
 .gb-cal-row:hover{
   transform:translateY(-2px);
-  border-color:var(--honey);
-  box-shadow:0 18px 36px -18px rgba(224,78,0,.45);
+  box-shadow:0 20px 38px -16px rgba(224,78,0,.5);
 }
 .gb-cal-row:active{ transform:translateY(0); }
 
@@ -467,45 +466,45 @@ img{ max-width:100%; display:block; }
 .gb-cal-date .d{
   font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
   font-weight:600;
-  font-size:28px;
+  font-size:31px;
   color:var(--amber-deep);
   padding:6px 2px 2px;
 }
-.gb-cal-date.is-range .d{ font-size:16px; padding:9px 2px 4px; letter-spacing:-.01em; }
+.gb-cal-date.is-range .d{ font-size:17px; padding:10px 2px 5px; letter-spacing:-.01em; }
 .gb-cal-date .w{
-  font-size:10px;
+  font-size:10.5px;
   font-weight:700;
   color:var(--ink-soft);
   padding:0 0 5px;
 }
 
-.gb-cal-main{ grid-area:main; display:flex; flex-direction:column; gap:3px; padding-top:1px; }
+.gb-cal-main{ grid-area:main; display:flex; flex-direction:column; gap:4px; padding-top:1px; }
 .gb-cal-badge{
   align-self:flex-start;
-  font-size:11px;
+  font-size:12px;
   font-weight:700;
   letter-spacing:.04em;
   color:#fff;
   background:var(--amber-deep);
-  padding:3px 9px;
+  padding:4px 11px;
   border-radius:3px;
 }
 .gb-cal-name{
-  font-family:"Kaisei Opti","Zen Kaku Gothic New",serif;
-  font-weight:700;
-  font-size:16px;
-  line-height:1.4;
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
+  font-weight:800;
+  font-size:19px;
+  line-height:1.35;
   color:var(--ink);
-  margin-top:2px;
+  margin-top:3px;
 }
 .gb-cal-time{
-  font-family:"Josefin Sans","Zen Kaku Gothic New",sans-serif;
-  font-weight:600;
-  font-size:15px;
-  letter-spacing:.02em;
-  color:var(--honey);
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
+  font-weight:800;
+  font-size:17px;
+  letter-spacing:.01em;
+  color:var(--amber-deep);
 }
-.gb-cal-note{ font-size:12px; color:var(--ink-soft); line-height:1.55; }
+.gb-cal-note{ font-size:13px; color:var(--ink); font-weight:500; line-height:1.55; }
 
 /* 「ページへ飛ぶ」ボタン(はっきりしたCTA) */
 .gb-cal-go{
@@ -514,13 +513,13 @@ img{ max-width:100%; display:block; }
   align-items:center;
   justify-content:center;
   gap:.5em;
-  margin-top:9px;
-  padding:12px 16px;
-  background:var(--honey);
+  margin-top:11px;
+  padding:14px 16px;
+  background:#e35100;
   color:#fff;
-  font-weight:700;
-  font-size:14px;
-  border-radius:7px;
+  font-weight:800;
+  font-size:15px;
+  border-radius:8px;
   white-space:nowrap;
 }
 .gb-cal-go .arw{
@@ -531,7 +530,7 @@ img{ max-width:100%; display:block; }
   flex:none;
   transition:transform .15s ease;
 }
-.gb-cal-row:hover .gb-cal-go{ background:#e04e00; }
+.gb-cal-row:hover .gb-cal-go{ background:#b84300; }
 .gb-cal-row:hover .gb-cal-go .arw{ transform:rotate(45deg) translate(2px,-2px); }
 
 .gb-cal-row.is-pending{ pointer-events:none; box-shadow:0 8px 20px -16px rgba(95,54,16,.4); }
@@ -796,17 +795,17 @@ body{ padding-bottom:74px; }
   .gb-fuku-btns .gb-btn{ width:auto; flex:1; }
 
   .gb-cal-row{
-    grid-template-columns:88px 1fr auto;
+    grid-template-columns:92px 1fr auto;
     grid-template-areas:"date main go";
     align-items:center;
-    gap:18px;
-    padding:16px 18px;
+    gap:20px;
+    padding:18px 20px;
   }
-  .gb-cal-date .d{ font-size:32px; }
-  .gb-cal-date.is-range .d{ font-size:18px; }
-  .gb-cal-name{ font-size:17px; }
-  .gb-cal-time{ font-size:16px; }
-  .gb-cal-go{ margin-top:0; padding:13px 22px; font-size:14.5px; }
+  .gb-cal-date .d{ font-size:35px; }
+  .gb-cal-date.is-range .d{ font-size:19px; }
+  .gb-cal-name{ font-size:21px; }
+  .gb-cal-time{ font-size:18px; }
+  .gb-cal-go{ margin-top:0; padding:15px 24px; font-size:15px; }
 
   /* 歩み:章を左右交互に */
   .gb-story .gb-inner{ max-width:620px; margin:0 auto; }
