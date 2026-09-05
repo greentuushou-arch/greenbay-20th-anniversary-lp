@@ -425,6 +425,7 @@ img{ max-width:100%; display:block; }
 .gb-cal-list{ display:flex; flex-direction:column; gap:12px; }
 
 .gb-cal-row{
+  position:relative;
   display:grid;
   grid-template-columns:66px 1fr;
   grid-template-areas:
@@ -538,6 +539,38 @@ img{ max-width:100%; display:block; }
 
 .gb-cal-row.is-pending{ pointer-events:none; box-shadow:0 8px 20px -16px rgba(95,54,16,.4); }
 .gb-cal-row.is-pending .gb-cal-go{ background:var(--gold-soft); color:var(--ink-soft); }
+
+/* 終了した日程:グレーダウン+「終了しました」を上から重ねる */
+.gb-cal-row.is-ended{
+  pointer-events:none;
+  filter:grayscale(90%);
+  box-shadow:0 8px 20px -16px rgba(95,54,16,.4);
+}
+.gb-cal-row.is-ended::before{
+  content:"";
+  position:absolute;
+  inset:-2px;                 /* 枠線の外側まで覆う */
+  background:rgba(60,42,23,.55);
+  border-radius:inherit;
+  z-index:1;
+}
+.gb-cal-row.is-ended::after{
+  content:"終了しました";
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
+  font-weight:900;
+  font-size:17px;
+  letter-spacing:.14em;
+  color:#fff;
+  background:rgba(40,28,15,.55);
+  border:2px solid #fff;
+  border-radius:8px;
+  padding:9px 20px;
+  white-space:nowrap;
+}
 
 /* ==========================================================================
    4. ここまでの歩み(タイムスリップ)
@@ -1103,7 +1136,8 @@ body{ padding-bottom:74px; }
       <p class="gb-cal-month">SEPTEMBER 2026</p>
       <div class="gb-cal-list">
 
-        <a href="#" class="gb-cal-row" data-coupon="flash4h">
+        <!-- ▼終了した日程は class="gb-cal-row is-ended" を付けるとグレーアウト+「終了しました」表示になります -->
+        <a href="#" class="gb-cal-row is-ended" data-coupon="flash4h">
           <span class="gb-cal-date">
             <span class="m">9月</span><span class="d">4</span><span class="w">金</span>
           </span>
@@ -1116,7 +1150,7 @@ body{ padding-bottom:74px; }
           <span class="gb-cal-go"><span data-cta>クーポンページを見る</span><span class="arw" aria-hidden="true"></span></span>
         </a>
 
-        <a href="#" class="gb-cal-row" data-coupon="time24h">
+        <a href="#" class="gb-cal-row is-ended" data-coupon="time24h">
           <span class="gb-cal-date">
             <span class="m">9月</span><span class="d">5</span><span class="w">土</span>
           </span>
